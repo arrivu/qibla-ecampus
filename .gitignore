@@ -45,3 +45,5 @@
 /public/plugins/
 /spec/coffeescripts/plugins/
 /spec/plugins/
+/.idea/
+/vendor/bundle/
