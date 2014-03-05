@@ -19,7 +19,7 @@
 class WebConference < ActiveRecord::Base
   include SendToStream
   include TextHelper
-  attr_accessible :title, :duration, :description, :conference_type, :user, :user_settings, :context
+  attr_accessible :title, :duration, :description, :conference_type, :user, :user_settings, :context, :start_date
   attr_readonly :context_id, :context_type
   belongs_to :context, :polymorphic => true
   has_many :web_conference_participants
@@ -404,7 +404,7 @@ class WebConference < ActiveRecord::Base
   def as_json(options={})
     url = options.delete(:url)
     join_url = options.delete(:join_url)
-    options.reverse_merge!(:only => %w(id title description conference_type duration started_at ended_at user_ids context_id context_type context_code))
+    options.reverse_merge!(:only => %w(id title description conference_type duration start_date started_at ended_at user_ids context_id context_type context_code))
     result = super(options.merge(:include_root => false, :methods => [:has_advanced_settings, :long_running, :user_settings, :recordings]))
     result['url'] = url
     result['join_url'] = join_url

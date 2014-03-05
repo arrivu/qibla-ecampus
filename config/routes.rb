@@ -170,6 +170,7 @@ routes.draw do
   end
 
   concern :conferences do
+    match 'get_users_by_section' => 'conferences#get_users_from_section' , :via => :get
     resources :conferences do
       match 'join' => 'conferences#join', :as => :join
       match 'close' => 'conferences#close', :as => :close
@@ -1420,6 +1421,10 @@ routes.draw do
       %w(course group).each do |context|
         prefix = "#{context}s/:#{context}_id/conferences"
         get prefix, :action => :index, :path_name => "#{context}_conferences"
+        post prefix, :action => :api_create
+        put "#{prefix}/:id", :action => :update
+        delete "#{prefix}/:id", :action => :destroy
+
       end
     end
 
@@ -1429,6 +1434,7 @@ routes.draw do
       post prefix, :action => :create
       put "#{prefix}/:id", :action => :update
       delete "#{prefix}/:id", :action => :destroy
+
     end
 
     scope(:controller => :custom_gradebook_column_data_api) do

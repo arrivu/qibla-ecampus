@@ -38,14 +38,14 @@ environment_configuration(defined?(config) && config) do |config|
   # Option to DISABLE_RUBY_DEBUGGING is helpful IDE-based debugging.
   # The ruby debug gems conflict with the IDE-based debugger gem.
   # Set this option in your dev environment to disable.
-  unless ENV['DISABLE_RUBY_DEBUGGING']
-    if RUBY_VERSION >= '2.0.0'
-      require 'byebug'
-      Kernel.send(:alias_method, :debugger, :byebug)
-    else
-      require "debugger"
-    end
-  end
+  #unless ENV['DISABLE_RUBY_DEBUGGING']
+  #  if RUBY_VERSION >= '2.0.0'
+  #    require 'byebug'
+  #    Kernel.send(:alias_method, :debugger, :byebug)
+  #  else
+  #    require "debugger"
+  #  end
+  #end
 
   if CANVAS_RAILS2
     config.to_prepare do

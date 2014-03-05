@@ -95,7 +95,7 @@ class ConferencesController < ApplicationController
   before_filter { |c| c.active_tab = "conferences" }
   before_filter :require_config
   before_filter :reject_student_view_student
-  before_filter :get_conference, :except => [:index, :create]
+  before_filter :get_conference, :except => [:index, :create,:get_users_from_section,:api_create]
 
   # @API List conferences
   # Retrieve the list of conferences for this context
@@ -145,6 +145,7 @@ class ConferencesController < ApplicationController
       default_conference: default_conference_json(@context, @current_user, session),
       conference_type_details: conference_types_json(WebConference.conference_types),
       users: @users.map { |u| {:id => u.id, :name => u.last_name_first} },
+      course_sections: @context.course_sections.active
     )
   end
   protected :web_index
@@ -169,6 +170,9 @@ class ConferencesController < ApplicationController
       @conference = @context.web_conferences.build(params[:web_conference])
       @conference.settings[:default_return_url] = named_context_url(@context, :context_url, :include_host => true)
       @conference.user = @current_user
+      @event = @context.calendar_events.build(:title=>params[:title], :description=>params[:description], :start_at=> params[:start_date], :end_at=> params[:start_date])
+      @event.updating_user = @current_user
+      @event.save
       members = get_new_members
       respond_to do |format|
         if @conference.save
@@ -187,6 +191,37 @@ class ConferencesController < ApplicationController
       end
     end
   end
+
+  def api_create
+    if authorized_action(@context.web_conferences.new, @current_user, :create)
+      params[:web_conference].try(:delete, :long_running)
+      @conference = @context.web_conferences.build(conference_type: params[:type],title: params[:title],
+                                                   description: params[:description],start_date: params[:start_date],
+                                                   duration: params[:duration])
+      @conference.settings[:default_return_url] = named_context_url(@context, :context_url, :include_host => true)
+      @conference.settings[:record ]= params[:record]
+      @conference.user = @current_user
+      if params[:start_date].present?
+        @event = @context.calendar_events.build(:title => params[:title], :description => params[:description], :start_at => params[:start_date], :end_at => params[:start_date])
+        @event.updating_user = @current_user
+        @event.save
+      end
+      members = get_new_members_for_api
+      respond_to do |format|
+        if @conference.save
+          @conference.add_initiator(@current_user)
+          members.uniq.each do |u|
+            @conference.add_invitee(u)
+          end
+          @conference.save
+          format.json { render :json => WebConference.find(@conference).as_json(:permissions => {:user => @current_user, :session => session},                                                                    :url => named_context_url(@context, :context_conference_url, @conference)) }
+        else
+          format.json { render :json => @conference.errors, :status => :bad_request }
+        end
+      end
+    end
+  end
+
 
   def update
     if authorized_action(@conference, @current_user, :update)
@@ -270,6 +305,45 @@ class ConferencesController < ApplicationController
         format.json { render :json => @conference }
       end
     end
+  end
+
+  def get_users_from_section
+    if params[:course_section_id] != "0"
+      @students = CourseSection.find(params[:course_section_id]).students.active
+    else
+      @students = @context.students.active
+    end
+    respond_to do |format|
+      format.json { render :json => @students.map{|s| {:id => s.id, :name => s.last_name_first}} }
+    end
+  end
+
+  def get_new_members_for_api
+    members = [@current_user]
+    if params[:user] && params[:user] != "all"
+      ids = []
+      params[:user].each do |id|
+        ids << id.to_i
+      end
+        if params[:section_id].present?
+          section = @context.course_sections.find_by_sis_source_id(params[:section_id])
+          if !section.nil? and !section.empty?
+            members += section.users.find_all_by_find_all_by_sis_sourse_id(ids).to_a
+          end
+        else
+          members += @context.course_sections.default.first.users.find_all_by_sis_sourse_id(ids).to_a
+        end
+    else
+       if params[:section_id].present?
+         section = @context.course_sections.find_by_sis_source_id(params[:section_id])
+           if !section.nil? and !section.empty?
+             members += section.users.to_a
+           end
+       else
+        members += @context.course_sections.default.first.users.to_a
+       end
+    end
+    members - @conference.invitees
   end
 
   protected

@@ -7,6 +7,7 @@ define([
   'jst/conferences/concludedConference',
   'jst/conferences/editConferenceForm',
   'jst/conferences/userSettingOptions',
+  'jst/conferences/UsersList',
   'jquery.ajaxJSON' /* ajaxJSON */,
   'jquery.instructure_forms' /* formSubmit, fillFormData */,
   'jqueryui/dialog',
@@ -16,9 +17,9 @@ define([
   'jquery.loadingImg' /* loadingImage */,
   'compiled/jquery.rails_flash_notifications',
   'jquery.templateData' /* fillTemplateData, getTemplateData */,
-  'jquery.instructure_date_and_time' /* parseFromISO, date_field */
-
-], function(INST, I18n, $, _, newConferenceTemplate, concludedConferenceTemplate, editConferenceFormTemplate, userSettingOptionsTemplate) {
+  'jquery.instructure_date_and_time', /* parseFromISO, date_field */
+  'jquery.disableWhileLoading'
+], function(INST, I18n, $, _, newConferenceTemplate, concludedConferenceTemplate, editConferenceFormTemplate, userSettingOptionsTemplate, userListTemplate) {
 
   $(document).ready(function() {
 
@@ -62,6 +63,7 @@ define([
           disable_duration_changes: ((conferenceData['long_running'] || is_editing) && conferenceData['started_at']),
           auth_token: ENV.AUTHENTICITY_TOKEN
         },
+        courseSections: ENV.course_sections,
         conferenceData: conferenceData,
         users: ENV.users,
         conferenceTypes: ENV.conference_type_details.map(function(type){
@@ -295,6 +297,18 @@ define([
       // Reflect the current 'all users" state
       $dialog.find(".all_users_checkbox").trigger('change');
       $dialog.dialog('open');
+      $(".datetime_field").datetime_field({alwaysShowTime: true});
+        console.log("testing");
+      // filter by section
+      $("#web_conference_course_section_id").change(function(event) {
+        $course_section_id =  event.target.value;
+        $dialog.disableWhileLoading($.ajaxJSON($("#get_users_from_section_url").attr('rel'), "GET", {course_section_id: $course_section_id}, function(data) {
+            //console.log(data);
+            $("#members_list").empty();
+            $("#members_list").append($(userListTemplate({users: data})));
+        })
+        );
+      });
     });
     $('body').on('click', '.start-button', function(event) {
       var w = window.open(this.href, '_blank');
