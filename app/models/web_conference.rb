@@ -23,20 +23,21 @@ class WebConference < ActiveRecord::Base
   attr_readonly :context_id, :context_type
   belongs_to :context, :polymorphic => true
   has_many :web_conference_participants
+  has_many :conference_calendar_event_associations, :dependent => :destroy
   has_many :users, :through => :web_conference_participants
   has_many :invitees, :through => :web_conference_participants, :source => :user, :conditions => ['web_conference_participants.participation_type = ?', 'invitee']
   has_many :attendees, :through => :web_conference_participants, :source => :user, :conditions => ['web_conference_participants.participation_type = ?', 'attendee']
   belongs_to :user
   validates_length_of :description, :maximum => maximum_text_length, :allow_nil => true, :allow_blank => true
   validates_presence_of :conference_type, :title, :context_id, :context_type, :user_id
-  
+
   before_validation :infer_conference_details
 
   before_create :assign_uuid
   after_save :touch_context
-  
+
   has_a_broadcast_policy
-  
+
   scope :for_context_codes, lambda { |context_codes| where(:context_code => context_codes) }
 
   serialize :settings
@@ -62,11 +63,11 @@ class WebConference < ActiveRecord::Base
   end
 
   def user_settings
-    @user_settings ||= 
-      self.class.user_setting_fields.keys.inject({}){ |hash, key|
-        hash[key] = settings[key]
-        hash
-      }
+    @user_settings ||=
+        self.class.user_setting_fields.keys.inject({}){ |hash, key|
+          hash[key] = settings[key]
+          hash
+        }
   end
 
   def external_urls_name(key)
@@ -96,11 +97,11 @@ class WebConference < ActiveRecord::Base
   end
 
   def default_settings
-    @default_settings ||= 
-    self.class.user_setting_fields.inject({}){ |hash, (name, data)|
-      hash[name] = data[:default] if data[:default]
-      hash
-    }
+    @default_settings ||=
+        self.class.user_setting_fields.inject({}){ |hash, (name, data)|
+          hash[name] = data[:default] if data[:default]
+          hash
+        }
   end
 
   def self.user_setting_field(name, options)
@@ -134,8 +135,8 @@ class WebConference < ActiveRecord::Base
   # regenerated)
   def external_url_for(key, user, url_id = nil)
     external_urls[key.to_sym] &&
-    respond_to?("#{key}_external_url") &&
-    send("#{key}_external_url", user, url_id) || []
+        respond_to?("#{key}_external_url") &&
+        send("#{key}_external_url", user, url_id) || []
   end
 
   if CANVAS_RAILS2
@@ -155,15 +156,15 @@ class WebConference < ActiveRecord::Base
     self.uuid ||= AutoHandle.generate_securish_uuid
   end
   protected :assign_uuid
-  
+
   set_broadcast_policy do |p|
     p.dispatch :web_conference_invitation
     p.to { @new_participants.select { |p| context.membership_for_user(p).active? } }
-    p.whenever { |record| 
+    p.whenever { |record|
       @new_participants && !@new_participants.empty?
     }
   end
-  
+
   on_create_send_to_streams do
     [self.user_id] + self.web_conference_participants.map(&:user_id)
   end
@@ -181,11 +182,11 @@ class WebConference < ActiveRecord::Base
     end
     p.save
   end
-  
+
   def added_users
     attendees
   end
-  
+
   def add_initiator(user)
     add_user(user, 'initiator')
   end
@@ -195,14 +196,14 @@ class WebConference < ActiveRecord::Base
   def add_attendee(user)
     add_user(user, 'attendee')
   end
-  
+
   def context_code
     read_attribute(:context_code) || "#{self.context_type.underscore}_#{self.context_id}" rescue nil
   end
-  
+
   def infer_conference_settings
   end
-  
+
   def conference_type=(val)
     conf_type = WebConference.conference_types.detect{|t| t[:conference_type] == val }
     if conf_type
@@ -213,7 +214,7 @@ class WebConference < ActiveRecord::Base
       nil
     end
   end
-  
+
   def infer_conference_details
     infer_conference_settings
     self.conference_type ||= config && config[:conference_type]
@@ -228,19 +229,19 @@ class WebConference < ActiveRecord::Base
       self.ended_at = self.started_at
     end
   end
-  
+
   def initiator
     self.user
   end
-  
+
   def available?
     !self.started_at
   end
-  
+
   def finished?
     self.started_at && !self.active?
   end
-  
+
   def restartable?
     end_at && Time.now <= end_at && !long_running?
   end
@@ -256,7 +257,7 @@ class WebConference < ActiveRecord::Base
   def duration_in_seconds
     duration ? duration * 60 : nil
   end
-  
+
   def running_time
     if ended_at.present? && started_at.present?
       [ended_at - started_at, 60].max
@@ -264,7 +265,7 @@ class WebConference < ActiveRecord::Base
       0
     end
   end
-  
+
   def restart
     self.start_at ||= Time.now
     self.end_at ||= self.start_at + self.duration_in_seconds if self.duration
@@ -282,7 +283,7 @@ class WebConference < ActiveRecord::Base
   def scheduled_date
     nil
   end
-  
+
   def active?(force_check=false)
     if !force_check
       return true if self.start_at && (self.end_at.nil? || self.end_at && Time.now > self.start_at && Time.now < self.end_at)
@@ -297,16 +298,16 @@ class WebConference < ActiveRecord::Base
       self.start_at ||= Time.now
       self.end_at = [self.start_at, Time.now].compact.min + self.duration_in_seconds
       self.save
-    # If the conference is still active but it's been more than fifteen minutes
-    # since it was supposed to end, just go ahead and end it
+      # If the conference is still active but it's been more than fifteen minutes
+      # since it was supposed to end, just go ahead and end it
     elsif @conference_active && self.end_at && self.end_at < 15.minutes.ago && !self.ended_at
       self.ended_at = Time.now
       self.start_at ||= self.started_at
       self.end_at ||= self.ended_at
       @conference_active = false
       self.save
-    # If the conference is no longer in use and its end_at has passed,
-    # consider it ended
+      # If the conference is no longer in use and its end_at has passed,
+      # consider it ended
     elsif @conference_active == false && self.started_at && self.end_at && self.end_at < Time.now && !self.ended_at
       close
     end
@@ -323,20 +324,20 @@ class WebConference < ActiveRecord::Base
     self.end_at ||= ended_at
     save
   end
-  
+
   def presenter_key
     @presenter_key ||= "instructure_" + Digest::MD5.hexdigest([user_id, self.uuid].join(","))
   end
-  
+
   def attendee_key
     @attendee_key ||= self.conference_key
   end
-  
+
   # Default implementaiton since not every conference type requires initiation
   def initiate_conference
     true
   end
-  
+
   # Default implementation since most implementations don't support recording yet
   def recordings
     []
@@ -351,7 +352,7 @@ class WebConference < ActiveRecord::Base
       participant_join_url(user, return_to)
     end
   end
-  
+
   def has_advanced_settings?
     respond_to?(:admin_settings_url)
   end
@@ -364,7 +365,7 @@ class WebConference < ActiveRecord::Base
   set_policy do
     given { |user, session| self.users.include?(user) && self.cached_context_grants_right?(user, session, :read) }
     can :read and can :join
-    
+
     given { |user, session| self.users.include?(user) && self.cached_context_grants_right?(user, session, :read) && long_running? && active? }
     can :resume
 
@@ -376,21 +377,21 @@ class WebConference < ActiveRecord::Base
 
     given { |user, session| user && user.id == self.user_id && self.cached_context_grants_right?(user, session, :create_conferences) }
     can :initiate
-    
+
     given { |user, session| self.cached_context_grants_right?(user, session, :manage_content) }
     can :read and can :join and can :initiate and can :create and can :delete
-    
+
     given { |user, session| cached_context_grants_right?(user, session, :manage_content) && !finished? }
     can :update
-    
+
     given { |user, session| cached_context_grants_right?(user, session, :manage_content) && long_running? && active? }
     can :close
   end
-  
+
   def config
     @config ||= WebConference.config(self.class.to_s)
   end
-  
+
   def valid_config?
     if !config
       false
@@ -421,14 +422,14 @@ class WebConference < ActiveRecord::Base
           (klass = (plugin.base || "#{plugin.id.classify}Conference").constantize rescue nil) &&
           klass < self.base_ar_class
       plugin.settings.merge(
-        :conference_type => plugin.id.classify,
-        :class_name => (plugin.base || "#{plugin.id.classify}Conference"),
-        :user_setting_fields => klass.user_setting_fields,
-        :plugin => plugin
+          :conference_type => plugin.id.classify,
+          :class_name => (plugin.base || "#{plugin.id.classify}Conference"),
+          :user_setting_fields => klass.user_setting_fields,
+          :plugin => plugin
       ).with_indifferent_access
     }.compact
   end
-  
+
   def self.config(class_name=nil)
     if class_name
       conference_types.detect{ |c| c[:class_name] == class_name }

@@ -618,6 +618,7 @@ routes.draw do
   match 'images/users/:user_id' => 'users#update_avatar_image', :as => :update_avatar_image, :via => :put
   match 'all_menu_courses' => 'users#all_menu_courses', :as => :all_menu_courses
   match 'grades' => 'users#grades', :as => :grades
+  match 'conferences' => 'conferences#get_conferences_for_user'
   match 'login' => 'pseudonym_sessions#new', :as => :login, :via => :get
   match 'login' => 'pseudonym_sessions#create', :via => :post
   match 'logout' => 'pseudonym_sessions#destroy', :as => :logout
@@ -923,7 +924,7 @@ routes.draw do
     end
 
     post '/courses/:course_id/assignments/:assignment_id/submissions/:user_id/comments/files',
-      :action => :create_file, :controller => :submission_comments_api
+         :action => :create_file, :controller => :submission_comments_api
 
     scope(:controller => :gradebook_history_api) do
       get "courses/:course_id/gradebook_history/days", :action => :days, :path_name => 'gradebook_history'
@@ -1422,8 +1423,7 @@ routes.draw do
         prefix = "#{context}s/:#{context}_id/conferences"
         get prefix, :action => :index, :path_name => "#{context}_conferences"
         post prefix, :action => :api_create
-        put "#{prefix}/:id", :action => :update
-        delete "#{prefix}/:id", :action => :destroy
+        delete "#{prefix}/:id", :action => :api_destroy
 
       end
     end

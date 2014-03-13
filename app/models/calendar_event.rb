@@ -22,9 +22,9 @@ class CalendarEvent < ActiveRecord::Base
   include CopyAuthorizedLinks
   include TextHelper
   attr_accessible :title, :description, :start_at, :end_at, :location_name,
-      :location_address, :time_zone_edited, :cancel_reason,
-      :participants_per_appointment, :child_event_data,
-      :remove_child_events, :all_day
+                  :location_address, :time_zone_edited, :cancel_reason,
+                  :participants_per_appointment, :child_event_data,
+                  :remove_child_events, :all_day
   attr_accessor :cancel_reason, :imported
   sanitize_field :description, Instructure::SanitizeField::SANITIZE
   copy_authorized_links(:description) { [self.effective_context, nil] }
@@ -33,6 +33,8 @@ class CalendarEvent < ActiveRecord::Base
 
 
   belongs_to :context, :polymorphic => true
+  has_many :web_conference
+  has_many :conference_calendar_event_associations
   belongs_to :user
   belongs_to :parent_event, :class_name => 'CalendarEvent', :foreign_key => :parent_calendar_event_id
   has_many :child_events, :class_name => 'CalendarEvent', :foreign_key => :parent_calendar_event_id, :conditions => "calendar_events.workflow_state <> 'deleted'"
@@ -244,18 +246,18 @@ class CalendarEvent < ActiveRecord::Base
   # Localized start_at
   def zoned_start_at
     self.start_at && ActiveSupport::TimeWithZone.new(self.start_at.utc,
-        ((ActiveSupport::TimeZone.new(self.time_zone_edited) rescue nil) || Time.zone))
+                                                     ((ActiveSupport::TimeZone.new(self.time_zone_edited) rescue nil) || Time.zone))
   end
 
   CASCADED_ATTRIBUTES = [
-    :title,
-    :description,
-    :location_name,
-    :location_address
+      :title,
+      :description,
+      :location_name,
+      :location_address
   ]
   LOCKED_ATTRIBUTES = CASCADED_ATTRIBUTES + [
-    :start_at,
-    :end_at
+      :start_at,
+      :end_at
   ]
 
   def sync_child_events
@@ -336,9 +338,9 @@ class CalendarEvent < ActiveRecord::Base
     to { participants - [@updating_user] }
     whenever {
       !appointment_group &&
-      context.available? && (
-        changed_in_state(:active, :fields => :start_at) ||
-        changed_in_state(:active, :fields => :end_at)
+          context.available? && (
+      changed_in_state(:active, :fields => :start_at) ||
+          changed_in_state(:active, :fields => :end_at)
       ) && !hidden?
     }
 
@@ -346,8 +348,8 @@ class CalendarEvent < ActiveRecord::Base
     to { appointment_group.instructors }
     whenever {
       appointment_group && parent_event &&
-      just_created &&
-      context == appointment_group.participant_for(user)
+          just_created &&
+          context == appointment_group.participant_for(user)
     }
     data { {:updating_user => @updating_user} }
 
@@ -355,21 +357,21 @@ class CalendarEvent < ActiveRecord::Base
     to { appointment_group.instructors }
     whenever {
       appointment_group && parent_event &&
-      deleted? &&
-      workflow_state_changed? &&
-      @updating_user &&
-      context == appointment_group.participant_for(@updating_user)
+          deleted? &&
+          workflow_state_changed? &&
+          @updating_user &&
+          context == appointment_group.participant_for(@updating_user)
     }
     data { {
-      :updating_user => @updating_user,
-      :cancel_reason => @cancel_reason
+        :updating_user => @updating_user,
+        :cancel_reason => @cancel_reason
     } }
 
     dispatch :appointment_reserved_for_user
     to { participants - [@updating_user] }
     whenever {
       appointment_group && parent_event &&
-      just_created
+          just_created
     }
     data { {:updating_user => @updating_user} }
 
@@ -377,12 +379,12 @@ class CalendarEvent < ActiveRecord::Base
     to { participants - [@updating_user] }
     whenever {
       appointment_group && parent_event &&
-      deleted? &&
-      workflow_state_changed?
+          deleted? &&
+          workflow_state_changed?
     }
     data { {
-      :updating_user => @updating_user,
-      :cancel_reason => @cancel_reason
+        :updating_user => @updating_user,
+        :cancel_reason => @cancel_reason
     } }
   end
 
@@ -490,7 +492,7 @@ class CalendarEvent < ActiveRecord::Base
       entry.updated   = self.updated_at.utc
       entry.published = self.created_at.utc
       entry.links    << Atom::Link.new(:rel => 'alternate',
-                                    :href => "http://#{HostUrl.context_host(self.context)}/#{context_url_prefix}/calendar?month=#{self.start_at.strftime("%m") rescue ""}&year=#{self.start_at.strftime("%Y") rescue ""}#calendar_event_#{self.id}")
+                                       :href => "http://#{HostUrl.context_host(self.context)}/#{context_url_prefix}/calendar?month=#{self.start_at.strftime("%m") rescue ""}&year=#{self.start_at.strftime("%Y") rescue ""}#calendar_event_#{self.id}")
       entry.id        = "tag:#{HostUrl.default_host},#{self.created_at.strftime("%Y-%m-%d")}:/calendar_events/#{self.feed_code}_#{self.start_at.strftime("%Y-%m-%d-%H-%M") rescue "none"}_#{self.end_at.strftime("%Y-%m-%d-%H-%M") rescue "none"}"
       entry.content   = Atom::Content::Html.new("#{datetime_string(self.start_at, self.end_at)}<br/>#{self.description}")
     end
@@ -537,13 +539,13 @@ class CalendarEvent < ActiveRecord::Base
       file = context.attachments.find_by_migration_id(hash[:attachment_value]) rescue nil
       description += "<p><a href='/#{context.class.to_s.downcase.pluralize}/#{context.id}/files/#{file.id}/download'>" + ERB::Util.h(t(:see_file, "See %{file_name}", :file_name => file.display_name)) + "</a></p>" if file
     elsif hash[:attachment_type] == 'area'
-     # ignored, no idea what this is
+      # ignored, no idea what this is
     elsif hash[:attachment_type] == 'web_link'
       link = context.external_url_hash[hash[:attachment_value]] rescue nil
       link ||= context.full_migration_hash['web_link_categories'].map{|c| c['links'] }.flatten.select{|l| l['link_id'] == hash[:attachment_value] } rescue nil
       description += "<p><a href='#{link['url']}'>#{link['name'] || ERB::Util.h(t(:see_related_link, "See Related Link"))}</a></p>" if link
     elsif hash[:attachment_type] == 'media_collection'
-     # ignored, no idea what this is
+      # ignored, no idea what this is
     elsif hash[:attachment_type] == 'topic'
       topic = context.discussion_topic.find_by_migration_id(hash[:attachment_value]) rescue nil
       description += "<p><a href='/#{context.class.to_s.downcase.pluralize}/#{context.id}/discussion_topics/#{topic.id}'>" + ERB::Util.h(t(:see_discussion_topic, "See %{discussion_topic_name}", :discussion_topic_name => topic.title)) + "</a></p>" if topic
@@ -561,8 +563,8 @@ class CalendarEvent < ActiveRecord::Base
     item.save_without_broadcasting!
     if context.respond_to?(:content_migration) && context.content_migration
       context.content_migration.add_missing_content_links(:class => item.class.to_s,
-        :id => item.id, :missing_links => hash[:missing_links],
-        :url => "/#{context.class.to_s.underscore.pluralize}/#{context.id}/#{item.class.to_s.underscore.pluralize}/#{item.id}")
+                                                          :id => item.id, :missing_links => hash[:missing_links],
+                                                          :url => "/#{context.class.to_s.underscore.pluralize}/#{context.id}/#{item.class.to_s.underscore.pluralize}/#{item.id}")
     end
     context.imported_migration_items << item if context.imported_migration_items
     if hash[:all_day]
@@ -591,8 +593,8 @@ class CalendarEvent < ActiveRecord::Base
 
     given { |user, session|
       appointment_group? && (
-        grants_right?(user, session, :manage) ||
-        cached_context_grants_right?(user, nil, :reserve) && context.participant_for(user).present?
+      grants_right?(user, session, :manage) ||
+          cached_context_grants_right?(user, nil, :reserve) && context.participant_for(user).present?
       )
     }
     can :reserve
@@ -652,7 +654,7 @@ class CalendarEvent < ActiveRecord::Base
       end
 
       event.summary = @event.title
-      
+
       if @event.is_a?(CalendarEvent) && @event.description
         html = api_user_content(@event.description, @event.context)
         event.description html_to_text(html)
@@ -702,8 +704,8 @@ class CalendarEvent < ActiveRecord::Base
       end
 
       event.summary += " [#{associated_course.course_code}]" if associated_course
-     
- 
+
+
       event = nil unless start_at
       return event unless in_own_calendar
 

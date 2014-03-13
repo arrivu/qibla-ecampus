@@ -19,7 +19,7 @@
 module Api::V1::Conferences
 
   API_CONFERENCE_JSON_OPTS = {
-    :only => %w(id title conference_type description
+      :only => %w(id title conference_type description
       duration ended_at started_at user_ids long_running
       recordings join_url had_advanced_settings)
   }
@@ -40,36 +40,46 @@ module Api::V1::Conferences
   def ui_conferences_json(conferences, context, user, session)
     conferences.map do |c|
       c.as_json(
-        permissions: {
-          user: user,
-          session: session,
-        },
-        url: named_context_url(context, :context_conference_url, c)
+          permissions: {
+              user: user,
+              session: session,
+          },
+          url: named_context_url(context, :context_conference_url, c)
       )
     end
   end
 
+  def single_conferences_json(conference, context, user, session)
+    conference.as_json(
+        permissions: {
+            user: user,
+            session: session,
+        },
+        url: named_context_url(context, :context_conference_url, conference)
+    )
+  end
+
   def default_conference_json(context, user, sesssion)
     conference = context.web_conferences.build(
-      :title => I18n.t(:default_conference_title, "%{course_name} Conference", :course_name => context.name),
-      :duration => WebConference::DEFAULT_DURATION,
+        :title => I18n.t(:default_conference_title, "%{course_name} Conference", :course_name => context.name),
+        :duration => WebConference::DEFAULT_DURATION,
     )
 
     conference.as_json(
-      permissions: {
-        user: user,
-        session: session,
+        permissions: {
+            user: user,
+            session: session,
         },
-      url: named_context_url(context, :context_conferences_url),
+        url: named_context_url(context, :context_conferences_url),
     )
   end
 
   def conference_types_json(conference_types)
     conference_types.map do |conference_type|
       {
-        name: conference_type[:plugin].name,
-        type: conference_type[:conference_type],
-        settings: conference_user_setting_fields_json(conference_type[:user_setting_fields]),
+          name: conference_type[:plugin].name,
+          type: conference_type[:conference_type],
+          settings: conference_user_setting_fields_json(conference_type[:user_setting_fields]),
       }
     end
   end
