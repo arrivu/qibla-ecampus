@@ -11,29 +11,60 @@
 
 // List View
 .list-view {
-  background-color: $lightBackground;
+//  background-color: $lightBackground;
+//  overflow: auto;
+  background-color: #ffffff;
+  font-family: 'Gentium', Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 19px;
   overflow: auto;
 
   & > header,
   // oldskool compat
   #section-tabs-header {
-    @include buttonBackground($listViewHeaderBackgroundLight, $listViewHeaderBackground, $gray);
+//    @include buttonBackground($listViewHeaderBackgroundLight, $listViewHeaderBackground, $gray);
+//    margin-top: 0;
+//    padding: 4px 12px;
+//    font-weight: bold;
+//    $shadow: inset 0 1px 0 rgba(255,255,255,0.75);
+//    @include box-shadow($shadow);
+//    border-bottom: 1px solid $listBorderColor;
+//    @include bevelText;
+//    border-top: 1px solid $listBorderColor;
+//
+//    // oldskool overrides
+//    font-size: $baseFontSize;
+//    font-weight: normal;
+//    margin-bottom: 0;
+//    line-height: 19px;
+//    height: inherit;
+    color: #5d5f60;
+    /* text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); */
+    background-color: #f3e7c5;
+    /* background-image: -moz-linear-gradient(top, #690219, #229c81);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#690219), to(#229c81));
+    background-image: -webkit-linear-gradient(top, #690219, #229c81);
+    background-image: -o-linear-gradient(top, #690219, #229c81);
+    background-image: linear-gradient(to bottom, #690219, #229c81);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFF0F3F5', endColorstr='#FFE1E6EB', GradientType=0);
+    border-color: #145d4d #145d4d #145d4d; */
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    *background-color: #8c739d;
+    /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
     margin-top: 0;
-    padding: 4px 12px;
+    padding: 4px 2px;
     font-weight: bold;
-    $shadow: inset 0 1px 0 rgba(255,255,255,0.75);
-    @include box-shadow($shadow);
-    border-bottom: 1px solid $listBorderColor;
-    @include bevelText;
-    border-top: 1px solid $listBorderColor;
-
-    // oldskool overrides
-    font-size: $baseFontSize;
+    /* -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+    -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+    border-bottom: 1px solid #5d5f60;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75); */
+    border-top: 1px solid #e5e6e8;
+    font-size: 20px;
     font-weight: normal;
     margin-bottom: 0;
-    line-height: 19px;
-    height: inherit;
-  }
+    line-height: 19px; }
   #section-tabs-header-subtitle {
     display: block;
     font-size: 11px;
@@ -84,9 +115,11 @@
   }
 
   a.active {
-    background-color: $activeBG;
-    border-bottom-color: lighten($borderColor, 15%);
-    border-top-color: lighten($activeBG, 2%);
+//    background-color: $activeBG;
+//    border-bottom-color: lighten($borderColor, 15%);
+//    border-top-color: lighten($activeBG, 2%);
+    background-color: #deb100;
+    color: #690219;
     &:hover {
       background-color: $activeBG;
     }

@@ -17,6 +17,27 @@
        url(/font/Symbola.svg?v1#webfont7MzkO3xs) format("svg");
 }
 
+@font-face {
+  font-family: 'ArnoPro';
+  src: url(/font/canvas/ArnoPro-Regular.eot?1366815405);
+  src: url("/font/canvas/ArnoPro-Regular.eot?#iefix") format("embedded-opentype"), url(/font/canvas/ArnoPro-Regular.woff?1366815405) format("woff"), url(/font/canvas/ArnoPro-Regular.ttf?1366815405) format("truetype"), url("/font/canvas/ArnoPro-Regular.svg#ArnoPro") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Gentium';
+  src: url(/font/canvas/Gentium-R.eot?1366815405);
+  src: url("/font/canvas/Gentium-R.eot?#iefix") format("embedded-opentype"), url(/font/canvas/Gentium-R.woff?1366815405) format("woff"), url(/font/canvas/Gentium-R.ttf?1366815405) format("truetype"), url("/font/canvas/Gentium-R.svg#Gentium-R") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'Merriweather';
+  src: url(/font/canvas/Merriweather-Regular.eot?1366815405);
+  src: url("/font/canvas/Merriweather-Regular.eot?#iefix") format("embedded-opentype"), url(/font/canvas/Merriweather-Regular.woff?1366815405) format("woff"), url(/font/canvas/Merriweather-Regular.ttf?1366815405) format("truetype"), url("/font/canvas/Merriweather-Regular.svg#Merriweather-Regular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
 div.math-dialog > span {
   padding: 0 !important;
 }

@@ -39,10 +39,11 @@ define([
             exact_time =  start_date - current_date
             start_button_enable_time = exact_time - 900000
             //console.log((start_button_enable_time / 1000)/60);
+            if(start_button_enable_time < 3600000 ){
             setTimeout(function() {
                 $("#"+conferenceData.id+"").css("display", "");
             },start_button_enable_time);
-
+            }
             $conference_row = $(newConferenceTemplate(conferenceData));
             $conference_row.data('conference', conferenceData);
             return $conference_row;

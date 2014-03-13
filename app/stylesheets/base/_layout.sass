@@ -3,7 +3,13 @@
 body, html
   height: 100%
 body
-  +bg-image('blue/bg', 'jpg', repeat, left, top, transparent, 150px, 150px)
+  margin: 0
+  font-family: 'Gentium', Helvetica Neue, Helvetica, Arial, sans-serif
+  font-size: 17px
+  line-height: 20px
+  color: #333333
+  background-color: #f0f0f0
+  //+bg-image('blue/bg', 'jpg', repeat, left, top, transparent, 150px, 150px)
   min-width: $min_main_width
 
   &.no-headers, &.embedded
@@ -74,15 +80,24 @@ body
   +pie-clearfix
 
 #main
-  position: relative
+  //position: relative
+  //z-index: 10
+  //background-color: $bodyBackground
+  //border: 1px solid $listBorderColor
+  //border-top: 0
+  //margin-bottom: 40px
+  //+pie-clearfix
+  //min-height: 450px
+  //max-width: $max_main_width
+   position: relative;
   z-index: 10
-  background-color: $bodyBackground
-  border: 1px solid $listBorderColor
+  background-color: white
+  border: 1px solid #690219
   border-top: 0
   margin-bottom: 40px
-  +pie-clearfix
+  *zoom: 1
   min-height: 450px
-  max-width: $max_main_width
+  max-width: 1100px
 
 #content
   padding: 1em
@@ -141,33 +156,55 @@ body
 // end classes applied to body
 
 #breadcrumbs
-  border-bottom: 1px solid #efefef
+  //border-bottom: 1px solid #efefef
+  //overflow: hidden
+  //background-color: #fff
+  border-bottom: 1px solid #690219
   overflow: hidden
-  background-color: #fff
+  background-color: #ffffff
   ul
-    +reset-list
-    +clearfix
+    //+reset-list
+    //+clearfix
+    //margin-left: 10px
+    //color: #637178
+    //font-size: 17px
+    margin: 0
+    padding: 0
+    list-style: none
+    overflow: hidden
+    *zoom: 1
     margin-left: 10px
     color: #637178
-    font-size: 12px
+    font-size: 17px
     li
+      //float: left
+      //height: 27px
+      //line-height: 29px
+      //padding-left: 12px
+      //margin-left: 8px
+      //@include bg-image(breadcrumb-chevron, png, no-repeat, 0, 50%, transparent, 5px, 9px)
+      &:first-child
+        background: none
+        padding-left: 0
+        margin-left: 0
       float: left
       height: 27px
       line-height: 29px
       padding-left: 12px
       margin-left: 8px
-      @include bg-image(breadcrumb-chevron, png, no-repeat, 0, 50%, transparent, 5px, 9px)
-      &:first-child
-        background: none
-        padding-left: 0
-        margin-left: 0
+      background-color: transparent
+      background-image: url(/images/breadcrumb-chevron.png?1366815405)
+      background-repeat: no-repeat
+      background-position: 0 50%
     .home a
-      color: #ccc
+      color: #cccccc
       i
+        //margin-right: -5px
+        //vertical-align: text-bottom
         margin-right: -5px
         vertical-align: text-bottom
         &:before
-          font-size: 12px
+          font-size: 17px
 
   .ellipsis
     display: inline-block
@@ -175,14 +212,14 @@ body
 
 #footer
   color: #5c5c5c
-  font-size: 11px
+  font-size: 14px
   margin: 0 15px 34px
-  .footer-logo
-    +bg-image('footer-logo', 'png', no-repeat, left, top, transparent, 140px, 10px)
-    display: inline-block
-    height: 10px
-    margin: 0 20px 0 0
-    width: 140px
+  //.footer-logo
+  //  +bg-image('footer-logo', 'png', no-repeat, left, top, transparent, 140px, 10px)
+  //  display: inline-block
+  //  height: 10px
+  //  margin: 0 20px 0 0
+  //  width: 140px
 
 #footer-links
   a
