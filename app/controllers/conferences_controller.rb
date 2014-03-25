@@ -132,6 +132,8 @@ class ConferencesController < ApplicationController
     @new_conferences, @concluded_conferences = conferences.partition { |conference|
       conference.ended_at.nil?
     }
+    @new_conferences = @new_conferences.sort_by(&:start_date)
+    #@concluded_conferences = @concluded_conferences.sort_by(&:start_date)
     log_asset_access("conferences:#{@context.asset_string}", "conferences", "other")
     scope = @context.users
     if @context.respond_to?(:participating_typical_users)
@@ -408,6 +410,7 @@ class ConferencesController < ApplicationController
     @new_conferences, @concluded_conferences = conferences.partition { |conference|
       conference.ended_at.nil?
     }
+    @new_conferences = @new_conferences.sort_by(&:start_date)
 
     @new_conferences.uniq.each do |new_conference|
       @current_conferences_json <<  single_conferences_json(new_conference, new_conference.context, @current_user, session)
