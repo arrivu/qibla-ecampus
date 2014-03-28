@@ -52,7 +52,7 @@
         {{checkbox "web_conference.long_running"
           checked=conferenceData.long_running
           disabled=settings.disable_duration_changes}}
-        {{#t "long_running"}}No time limit (for long-running conferences){{/t}}
+        {{#t "long_running_live_session"}}No time limit (for long-running live session){{/t}}
       </label>
     </div>
   </div>
@@ -96,9 +96,9 @@
   <div class="form-controls">
     <button type="button" class="cancel_button btn">{{#t "buttons.cancel"}}Cancel{{/t}}</button>
     {{# if settings.is_adding}}
-      <button type="submit" class="btn btn-primary save-button">{{#t "buttons.create_conference"}}Create Conference{{/t}}</button>
+      <button type="submit" class="btn btn-primary save-button">{{#t "buttons.create_live_session"}}Create Live Session{{/t}}</button>
     {{else}}
-      <button type="submit" class="btn btn-primary save-button">{{#t "buttons.update_condference"}}Update Conference{{/t}}</button>
+      <button type="submit" class="btn btn-primary save-button">{{#t "buttons.update_live_session"}}Update Live Session{{/t}}</button>
     {{/if}}
   </div>
 </form>

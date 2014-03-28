@@ -184,7 +184,7 @@ define([
         $('#add_conference_form').dialog({
             autoOpen: false,
             width: 'auto',
-            title: I18n.t('new_conference_title', 'New Conference')
+            title: I18n.t('new_live_session_title', 'New Live Session')
         }).data('dialog');
 
         $.screenReaderFlashMessage(
@@ -246,7 +246,7 @@ define([
             $dialog.data('editing-conf', $conference);
             if(edit) {
                 $dialog.dialog({
-                    title: I18n.t('update_conference_title', 'Update Conference')
+                    title: I18n.t('update_live_session_title', 'Update Live Session')
                 });
                 $dialog.html(buildConferenceForm(conferenceData, 'editing'));
 
@@ -259,7 +259,7 @@ define([
                 //delete data.conference_type;
                 $dialog.html(buildConferenceForm(conferenceData, 'adding'));
                 $dialog.dialog({
-                    title: I18n.t('new_conference_title', 'New Conference')
+                    title: I18n.t('new_live_session_title', 'New Live Session')
                 });
                 $dialog.find(".all_users_checkbox").attr('checked', true).end()
                     .find("#members_list").hide().find(":checkbox").attr('checked', false);

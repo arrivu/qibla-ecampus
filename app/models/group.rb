@@ -521,7 +521,7 @@ class Group < ActiveRecord::Base
     if root_account.try :canvas_network_enabled?
       available_tabs << {:id => TAB_PROFILE, :label => t('#tabs.profile', 'Profile'), :css_class => 'profile', :href => :group_profile_path}
     end
-    available_tabs << { :id => TAB_CONFERENCES, :label => t('#tabs.conferences', "Conferences"), :css_class => 'conferences', :href => :group_conferences_path } if user && self.grants_right?(user, nil, :read)
+    available_tabs << { :id => TAB_CONFERENCES, :label => t('#tabs.live_sessions', "Live Sessions"), :css_class => 'conferences', :href => :group_conferences_path } if user && self.grants_right?(user, nil, :read)
     available_tabs << { :id => TAB_COLLABORATIONS, :label => t('#tabs.collaborations', "Collaborations"), :css_class => 'collaborations', :href => :group_collaborations_path } if user && self.grants_right?(user, nil, :read)
     if root_account.try(:canvas_network_enabled?) && user && grants_right?(user, nil, :manage)
       available_tabs << { :id => TAB_SETTINGS, :label => t('#tabs.settings', 'Settings'), :css_class => 'settings', :href => :edit_group_path } 

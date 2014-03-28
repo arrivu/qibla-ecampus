@@ -1929,7 +1929,7 @@ en-AU:
   bb_name: "Blackboard Converter"
   big_blue_button_conference: 
     recording_setting: Recording
-    recording_setting_description: "Record this conference"
+    recording_setting_description: "Record this live session"
   blackboard: 
     no_manifest: "This Blackboard .zip has no imsmanifest.xml file in the root directory."
   bookmark_service: 
@@ -2676,13 +2676,16 @@ en-AU:
       buttons: 
         cancel: Cancel
         create_conference: "Create Conference"
+        create_live_session: "Create Live Session"
         update_condference: "Update Conference"
+        update_live_session: "Update Live Session"
       conference_type: Type
       description: Description
       duration: Duration
       duration_in_minutes: minutes
       invite_all: "Invite All Course Members"
       long_running: "No time limit (for long-running conferences)"
+      long_running_live_session: "No time limit (for long-running live session)"
       members: Members
       name: Name
       options: Options
@@ -2691,10 +2694,15 @@ en-AU:
     inactive_error: "That conference is not currently active"
     index: 
       concluded_conferences: "Concluded Conferences"
+      concluded_live_sessions: "Concluded Live Sessions"
       new_conference: "New Conference"
+      new_live_session: "New Live Session"
       new_conferences: "New Conferences"
+      new_live_sessions: "New Live Sessions"
       no_concluded_conferences: "There are no concluded conferences"
+      no_concluded_live_sessions: "There are no concluded live sessions"
       no_new_conferences: "There are no new conferences"
+      no_new_live_sessions: "There are no new live_sessions"
       page_title: "Web Conferences"
     loading_urls_message: "Loading, please wait..."
     multiple_urls_message: "There are multiple %{type} pages available for this conference. Please select one:"
@@ -2706,6 +2714,7 @@ en-AU:
       join: Join
       start: Start
     new_conference_title: "New Conference"
+    new_live_session_title: "New Live Session"
     no_settings_error: "The conference does not have an advanced settings page"
     no_urls_error: "Sorry, it looks like there aren't any %{type} pages for this conference yet."
     notifications: 
@@ -2725,6 +2734,7 @@ en-AU:
         started: "Started %{time}"
     type_disabled_error: "This type of conference is no longer enabled for this Canvas site"
     update_conference_title: "Update Conference"
+    update_live_session_title: "Update Live Session"
   content_exports: 
     buttons: 
       process: "Process Data"
@@ -4320,6 +4330,7 @@ en-AU:
     calendar_events: "Calendar Events"
     chat: Chat
     conferences: Conferences
+    live_sessions: "Live Sessions"
     confirmation: Confirmation
     copy_course: "Copy Course"
     developer_keys: "Developer Keys"
@@ -12319,6 +12330,7 @@ en-AU:
     chat: Chat
     collaborations: Collaborations
     conferences: Conferences
+    live_sessions: "Live Sessions"
     discussions: Discussions
     eportfolios: ePortfolios
     files: Files

@@ -171,7 +171,7 @@ routes.draw do
 
   concern :conferences do
     match 'get_users_by_section' => 'conferences#get_users_from_section' , :via => :get
-    resources :conferences do
+    resources :conferences ,:path => 'livesessions' do
       match 'join' => 'conferences#join', :as => :join
       match 'close' => 'conferences#close', :as => :close
       match 'settings' => 'conferences#settings', :as => :settings
@@ -618,7 +618,7 @@ routes.draw do
   match 'images/users/:user_id' => 'users#update_avatar_image', :as => :update_avatar_image, :via => :put
   match 'all_menu_courses' => 'users#all_menu_courses', :as => :all_menu_courses
   match 'grades' => 'users#grades', :as => :grades
-  match 'conferences' => 'conferences#get_conferences_for_user'
+  match 'conferences' => 'conferences#get_conferences_for_user' ,:as => :conferences ,:path => 'livesessions'
   match 'login' => 'pseudonym_sessions#new', :as => :login, :via => :get
   match 'login' => 'pseudonym_sessions#create', :via => :post
   match 'logout' => 'pseudonym_sessions#destroy', :as => :logout

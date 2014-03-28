@@ -91,7 +91,7 @@ class ConferencesController < ApplicationController
   include Api::V1::Conferences
 
   before_filter :require_context, :except => [:get_conferences_for_user]
-  add_crumb(proc{ t '#crumbs.conferences', "Conferences"},:except => [:get_conferences_for_user]) { |c| c.send(:named_context_url, c.instance_variable_get("@context"), :context_conferences_url) }
+  add_crumb(proc{ t '#crumbs.live_sessions', "Live Sessions"},:except => [:get_conferences_for_user]) { |c| c.send(:named_context_url, c.instance_variable_get("@context"), :context_conferences_url) }
   before_filter { |c| c.active_tab = "conferences" }
   before_filter :require_config
   before_filter :reject_student_view_student
@@ -132,6 +132,7 @@ class ConferencesController < ApplicationController
     @new_conferences, @concluded_conferences = conferences.partition { |conference|
       conference.ended_at.nil?
     }
+
     @new_conferences = @new_conferences.sort_by(&:start_date)
     #@concluded_conferences = @concluded_conferences.sort_by(&:start_date)
     log_asset_access("conferences:#{@context.asset_string}", "conferences", "other")
@@ -212,7 +213,7 @@ class ConferencesController < ApplicationController
                                                    description: params[:description],start_date: params[:start_date],
                                                    duration: params[:duration])
       @conference.settings[:default_return_url] = named_context_url(@context, :context_url, :include_host => true)
-      @conference.settings[:record ]= params[:record]
+      @conference.settings[:record ]= true
       @conference.user = User.find(params[:teacher_id])
       members = get_new_members_for_api
       respond_to do |format|
