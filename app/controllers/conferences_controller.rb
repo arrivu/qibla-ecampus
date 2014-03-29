@@ -233,7 +233,7 @@ class ConferencesController < ApplicationController
           @event.context_type = "User"
           @event.updating_user = @current_user
           @event.save
-          conference_calendar_event_association = @event.conference_calendar_event_associations.build(:web_conference_id => @conference.id)
+          conference_calendar_event_association = @event.conference_calendar_event_associations.build(:web_conference_id => @conference.id,:calendar_event_id => @event.id)
           conference_calendar_event_association.save!
 
           format.json { render :json => WebConference.find(@conference).as_json(:permissions => {:user => @current_user, :session => session},
@@ -255,12 +255,34 @@ class ConferencesController < ApplicationController
         params[:web_conference].try(:delete, :conference_type)
         if @conference.update_attributes(params[:web_conference])
           # TODO: ability to dis-invite people
-          members.uniq.each do |u|
+          participant=WebConferenceParticipant.find_all_by_web_conference_id(@conference.id)
+          participant.each do |p|
+            p.destroy
+          end
+          @conference.add_initiator(@current_user)
+          @conference_users.uniq.each do |u|
             if u.id != @current_user.id
               @conference.add_invitee(u)
             end
           end
           @conference.save
+
+          @conference.conference_calendar_event_associations.each do |con|
+            CalendarEvent.destroy(con.calendar_event_id)
+            ConferenceCalendarEventAssociation.destroy(con.id)
+          end
+
+          @conference_users.uniq.each do |u|
+            @event = CalendarEvent.new(:title => params[:title], :description => params[:description],
+                                       :start_at => params[:start_date], :end_at => params[:start_date])
+            @event.context_id = u.id
+            @event.context_type = @current_user.class.name
+            @event.updating_user = @current_user
+            @event.save
+            conference_calendar_event_association = @event.conference_calendar_event_associations.build(:web_conference_id => @conference.id,:calendar_event_id => @event.id)
+            conference_calendar_event_association.save!
+          end
+
           format.html { redirect_to named_context_url(@context, :context_conference_url, @conference.id) }
           format.json { render :json => @conference.as_json(:permissions => {:user => @current_user, :session => session},
                                                             :url => named_context_url(@context, :context_conference_url, @conference)) }
@@ -459,7 +481,8 @@ class ConferencesController < ApplicationController
       params[:user].each do |id, val|
         ids << id.to_i if val == '1'
       end
-      members += @context.users.find_all_by_id(ids).to_a
+      @conference_users = @context.users.find_all_by_id(ids).to_a
+      members += @conference_users
     else
       members += @context.users.to_a
     end
