@@ -208,43 +208,46 @@ class ConferencesController < ApplicationController
 
   def api_create
     if authorized_action(@context.web_conferences.new, @current_user, :create)
-      params[:web_conference].try(:delete, :long_running)
-      @conference = @context.web_conferences.build(conference_type: params[:type],title: params[:title],
-                                                   description: params[:description],start_date: params[:start_date],
-                                                   duration: params[:duration])
-      @conference.settings[:default_return_url] = named_context_url(@context, :context_url, :include_host => true)
-      @conference.settings[:record ]= true
-      @conference.user = User.find(params[:teacher_id])
-      members = get_new_members_for_api
       respond_to do |format|
-        @conference.add_initiator(User.find(params[:teacher_id]))
-        @conference.add_invitee(User.find(params[:student_id]))
-        if @conference.save
-          @event = CalendarEvent.new(:title=>params[:title], :description=>params[:description], :start_at=> params[:start_date], :end_at=> params[:start_date])
-          @event.context_id = params[:teacher_id]
-          @event.context_type = "User"
-          @event.updating_user = @current_user
-          @event.save
-          conference_calendar_event_association = @event.conference_calendar_event_associations.build(:web_conference_id => @conference.id)
-          conference_calendar_event_association.save!
-
-          @event = CalendarEvent.new(:title=>params[:title], :description=>params[:description], :start_at=> params[:start_date], :end_at=> params[:start_date])
-          @event.context_id = params[:student_id]
-          @event.context_type = "User"
-          @event.updating_user = @current_user
-          @event.save
-          conference_calendar_event_association = @event.conference_calendar_event_associations.build(:web_conference_id => @conference.id,:calendar_event_id => @event.id)
-          conference_calendar_event_association.save!
-
-          format.json { render :json => WebConference.find(@conference).as_json(:permissions => {:user => @current_user, :session => session},
-                                                                                :url => named_context_url(@context, :context_conference_url, @conference)) }
+        @conference = WebConference.find_by_title_and_start_date(params[:title],params[:start_date])
+        if @conference
+          @conference.add_invitee(User.find(params[:student_id]))
+          create_calendar_events(params[:student_id])
         else
-          format.json { render :json => @conference.errors, :status => :bad_request }
+          params[:web_conference].try(:delete, :long_running)
+          @conference = @context.web_conferences.build(conference_type: params[:type],title: params[:title],
+                                                       description: params[:description],start_date: params[:start_date],
+                                                       duration: params[:duration])
+          @conference.settings[:default_return_url] = named_context_url(@context, :context_url, :include_host => true)
+          @conference.settings[:record ]= true
+          @conference.user = User.find(params[:teacher_id])
+          members = get_new_members_for_api
+
+          @conference.add_initiator(User.find(params[:teacher_id]))
+          @conference.add_invitee(User.find(params[:student_id]))
+          if @conference.save
+            create_calendar_events(params[:teacher_id])
+            create_calendar_events(params[:student_id])
+            format.json { render :json => WebConference.find(@conference).as_json(:permissions => {:user => @current_user, :session => session},
+                                                                                  :url => named_context_url(@context, :context_conference_url, @conference)) }
+          else
+            format.json { render :json => @conference.errors, :status => :bad_request }
+          end
+
         end
       end
     end
   end
 
+  def create_calendar_events(user_id)
+    @event = CalendarEvent.new(:title=>params[:title], :description=>params[:description], :start_at=> params[:start_date], :end_at=> params[:start_date])
+    @event.context_id = user_id
+    @event.context_type = "User"
+    @event.updating_user = @current_user
+    @event.save
+    conference_calendar_event_association = @event.conference_calendar_event_associations.build(:web_conference_id => @conference.id,:calendar_event_id => @event.id)
+    conference_calendar_event_association.save!
+  end
 
   def update
     if authorized_action(@conference, @current_user, :update)
