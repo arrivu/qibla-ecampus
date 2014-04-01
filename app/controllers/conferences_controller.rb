@@ -209,11 +209,15 @@ class ConferencesController < ApplicationController
   def api_create
     if authorized_action(@context.web_conferences.new, @current_user, :create)
       respond_to do |format|
-        @conference = WebConference.find_by_title_and_start_date(params[:title],params[:start_date])
+        @conference = WebConference.find_by_title_and_start_date(params[:title],params[:start_date].to_time)
+        #new_logger = Logger.new('log/exceptions.log')
+        #new_logger.info(params[:title]+"-"+params[:start_date]+"\n")
         if @conference
+          #new_logger.info("existing conference\n")
           @conference.add_invitee(User.find(params[:student_id]))
           create_calendar_events(params[:student_id])
         else
+          #new_logger.info("new conference\n")
           params[:web_conference].try(:delete, :long_running)
           @conference = @context.web_conferences.build(conference_type: params[:type],title: params[:title],
                                                        description: params[:description],start_date: params[:start_date],
