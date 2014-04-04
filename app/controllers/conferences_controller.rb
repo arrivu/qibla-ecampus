@@ -115,7 +115,7 @@ class ConferencesController < ApplicationController
     return unless authorized_action(@context, @current_user, :read)
     return unless tab_enabled?(@context.class::TAB_CONFERENCES)
     return unless @current_user
-    conferences = @context.grants_right?(@current_user, :manage_content) ?
+    conferences = (@domain_root_account ||= @account).grants_right?(@current_user, :manage_content) ?
         @context.web_conferences :
         @current_user.web_conferences.where(context_type: @context.class.to_s, context_id: @context.id)
     api_request? ? api_index(conferences) : web_index(conferences)

@@ -10,11 +10,20 @@
                 {{title}}
             </a>
         {{else}}
-            <span class="ig-title ellipses">{{title}}</span>
+            {{#if highlight }}
+                <span class="ig-title ellipses" style="color:#DEB100;">{{title}}</span>
+            {{else}}
+                <span class="ig-title ellipses" >{{title}}</span>
+            {{/if}}
         {{/if}}
         <div class="ig-details row-fluid">
-            <div class="span4 ellipses">{{description}}</div>
-            <div class="span4 ellipses">{{datetimeFormatted start_date}}</div>
+            {{#if highlight }}
+                <div class="span4 ellipses" style="color:#DEB100">{{description}}</div>
+                <div class="span4 ellipses" style="color:#DEB100">{{datetimeFormatted start_date}}</div>
+            {{else}}
+                <div class="span4 ellipses">{{description}}</div>
+                <div class="span4 ellipses">{{datetimeFormatted start_date}}</div>
+            {{/if}}
             {{#if scheduled}}
                 <div class="span4 ellipses">{{datetimeFormatted scheduled_at}}</div>
             {{/if}}
