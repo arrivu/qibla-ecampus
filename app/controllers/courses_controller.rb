@@ -1294,6 +1294,24 @@ class CoursesController < ApplicationController
           format.json { render :json => @enrollment, :status => :bad_request }
         end
       end
+      @enroll_user_id = @enrollment.user_id
+      @find_context_conference = @context.web_conferences
+      @find_context_conference.each do |user_conference|
+        @conference_id = user_conference.id
+        @find_conference = WebConferenceParticipant.find_by_web_conference_id_and_user_id(@conference_id,@enroll_user_id)
+        if @find_conference != nil
+          @find_conference.destroy
+        end
+        @find_calendar_id = ConferenceCalendarEventAssociation.find_all_by_web_conference_id(@conference_id)
+        @find_calendar_id.each do |calendar|
+          @new = calendar.calendar_event_id
+          @calendar_event = CalendarEvent.active.find_by_id_and_context_id(@new,@enroll_user_id)
+          if @calendar_event != nil
+            @calendar_event.workflow_state = "deleted"
+            @calendar_event.save!
+          end
+        end
+      end
     else
       authorized_action(@context, @current_user, :permission_fail)
     end

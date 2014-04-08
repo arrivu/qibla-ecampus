@@ -33,21 +33,12 @@ en:
     no_file: "No outcome file or authority given"
     no_permissions: "User isn't allowed to edit global outcomes"
     no_perms: "User isn't allowed to edit global outcomes"
-  accont: 
-    feedback_pricing_sub: "Get the numbers for your institution"
   account: 
-    ask_canvas_network: "Ask the Canvas Network Community"
     default_account_name: "Default Account"
     default_site_administrator_account_name: "Site Admin"
     default_term_name: "Default Term"
     errors: 
       invalid_discovery_url: "The discovery URL is not valid"
-    feedback_coach: "Ask the Community"
-    feedback_coach_sub: "Get help from a Canvas expert"
-    feedback_feature_request: "Request a Feature"
-    feedback_feature_request_canvas_net: "Request a Feature in Canvas Network"
-    feedback_feature_request_sub: "Have an idea to improve Canvas?"
-    feedback_pricing: "Canvas Pricing Information"
     manually_created_courses: "Manually-Created Courses"
     root_account_cant_have_sis_id: "SIS IDs cannot be set on root accounts"
     sis_id_in_use: "SIS ID \"%{sis_id}\" is already in use"
@@ -250,11 +241,6 @@ en:
     announcement_deleted_notice: "Announcement successfully deleted"
     permission_denied_notice: "You cannot create announcements for that account"
   account_reports: 
-    ccp: 
-      course: 
-        check_box: "For Course: %{course_id};"
-      courses_only: "Online courses only"
-      start_at: "Start At: %{start_at};"
     default: 
       all_terms: "All Terms"
       course_text: "For Course: %{course};"
@@ -267,8 +253,6 @@ en:
       term_text: "Term: %{term_name};"
     grades: 
       deleted: "Include Deleted Objects: true;"
-    mississippi: 
-      reports: "Reports: %{files}"
     outcomes: 
       order: "Order: %{order}"
     sis_exporter: 
@@ -301,8 +285,6 @@ en:
       account_admin: "Account Admin"
   accounts: 
     account_name_required: "The account name cannot be blank"
-    account_quotas_not_updated: "Account quotas were not updated"
-    account_quotas_updated: "Account quotas updated"
     account_user: 
       remove_admin_tooltip: "Remove this admin"
     add_course_button: "Add Course"
@@ -331,14 +313,6 @@ en:
     add_user_dialog_title: "Add a New User"
     adding_course_message: "Adding Course..."
     adding_user_message: "Adding User..."
-    additional_settings_right_side: 
-      links: 
-        suspend: "Suspend Account"
-        unsuspend: "Unsuspend Account"
-      title: 
-        suspend: "Suspend Account"
-      titles: 
-        unsuspend: "Unsuspend Account"
     admin_tools: 
       admin_tools: 
         tab_labels: 
@@ -404,32 +378,6 @@ en:
         message_date_to: "To Date"
         search: Search
         search_people: "Search people"
-    assignment_scheduling_csv_description: 
-      account_reports: 
-        newark: 
-          description: 
-            header: Example
-          student_activity: 
-            text: "This report shows shows all of the assignments and info pertaining to those assignments that are in the specified assignment group or groups and in the specified date range. This report provides data for scheduling assignments, and managing students assignment load, showing only students and assignments where there are 2 or more conflicting assignments due on the same date for a student."
-    assignment_scheduling_csv_parameters: 
-      account_reports: 
-        newark: 
-          assignment_count: 
-            field: "# Assignments:"
-          assignment_groups: 
-            label: "Assignment Groups To Include:"
-          assignments: 
-            check_box: Assignments
-          major: 
-            check_box: Major
-          papers: 
-            check_box: Papers
-          projects: 
-            check_box: Projects
-          reports: 
-            check_box: Reports
-          tests: 
-            check_box: Tests
     avatars: 
       all_link: 
         one: "All %{count}"
@@ -459,24 +407,6 @@ en:
       unlock_link: unlock
     cannot_manage_account: "You are not allowed to manage account settings"
     cannot_manage_quotas: "You are not allowed to manage quota settings"
-    ccp_zero_activity_csv_description: 
-      account_reports: 
-        ccp: 
-          ccp_zero_activity_csv: 
-            header: Example
-            text: "This report shows all the students enrolled in any courses in a given term. Resulting csv file will have one row per user enrollment that have not visited the course since the date."
-    ccp_zero_activity_csv_parameters: 
-      account_reports: 
-        ccp: 
-          filter_online: 
-            check_box: "Online classes only"
-    chcp_student_activity_csv_description: 
-      account_reports: 
-        chcp: 
-          student_activity: 
-            description: 
-              header: Example
-            text: "This report shows student involvment in their courses. The resulting csv file will have one row per enrollment and will show the student sis id, student name, phone number, email address, course name, last submission, days since last submission(LDA), cuurent grade percentage, and their term start date."
     confirm_delete_user: 
       confirm_delete: "Are you sure you want to delete this user from the account %{account}? This will remove the user's data (including grades) from all courses and groups. This process cannot be undone."
       delete_button: "Delete %{user}"
@@ -499,13 +429,6 @@ en:
       teachers_label: Teachers
     course_add_failed_message: "Adding Course Failed, please try again"
     course_added_message: "%{course} successfully added!"
-    course_status_csv_description: 
-      account_reports: 
-        auburn: 
-          course_status: 
-            text: "This report shows the status of all the courses for a given term. The resulting csv file will have one row per course section and will show the course, course status, term, effective start and end dates, and a teacher of record in the section."
-          description: 
-            header: Example
     course_type: course
     courses: 
       courses_crumb: Courses
@@ -521,39 +444,6 @@ en:
       go_button: Go
       hide_enrollmentless_courses: "Hide enrollmentless courses"
     crumb_statistics: Statistics
-    custom_grade_export_csv_description: 
-      account_reports: 
-        ross: 
-          description: 
-            header: Example
-            text: "This report shows the student final grade results for all students in a given term. The resulting csv file will have one row per enrollment, and will show the current and final grade that is displayed in the course gradebook."
-    custom_grade_export_csv_parameters: 
-      account_reports: 
-        ross: 
-          parameters: 
-            note: "Courses with muted assignments may not accurately reflect scores in this report."
-    custom_outcomes_csv_description: 
-      account_reports: 
-        edison: 
-          description: 
-            header: Example
-            text: "This report shows the learning outcome results for all students. The resulting csv file will have one row per user-outcome-result pair, and will show the details of the result including the associated assignment."
-    custom_outcomes_csv_parameters: 
-      account_reports: 
-        edison: 
-          course: 
-            text: "course_id:"
-          outcome: 
-            text: "outcome_id:"
-    cv_submission_data_csv_description: 
-      account_reports: 
-        galen: 
-          cv: 
-            attendance: 
-              text: "This report shows student submissions up to provided date. This is used for CampusVue attendance."
-        tmcc: 
-          description: 
-            header: Example
     date_picker_parameter: 
       account_reports: 
         default: 
@@ -563,24 +453,10 @@ en:
           start: 
             parameters: 
               header: "Start at:"
-      custom_reports: 
-        end: 
-          parameters: 
-            header: "End at:"
-        start: 
-          parameters: 
-            header: "Start at:"
     default_account_quotas_not_updated: "Default account quotas were not updated"
     default_account_quotas_updated: "Default account quotas updated"
     find_not_authorized: "You are not authorized to access that %{type}"
     find_not_found: "Could not find a %{type} with that ID"
-    google_doc_accounts_csv_description: 
-      account_reports: 
-        ut_austin: 
-          description: 
-            header: Example
-          google_doc: 
-            text: "This is a report of all users and the associated email address used for the Google Docs integration."
     grade_export_csv_description: 
       account_reports: 
         default: 
@@ -605,37 +481,6 @@ en:
           last_user_access: 
             header: Example
             text: "This report shows the last login for active users."
-    learning_outcome_assignment_type_csv_description: 
-      account_reports: 
-        newark: 
-          student_activity: 
-            text: "This report provides an export of data that relates outcomes to assignments."
-        samuel_merrit_university: 
-          description: 
-            header: Example
-    learning_outcome_assignment_type_csv_parameters: 
-      account_reports: 
-        samuel_merrit_university: 
-          course: 
-            sis: 
-              text: "Course SIS ID"
-            text: "Course ID"
-          parameters: 
-            note1: "Course ID can be left blank to run the report for all courses in the term."
-    mississippi_sis_csv_description: 
-      account_reports: 
-        mississisppi: 
-          sis_data: 
-            text: "This report returns all the sis users, sections, and enrollments for all trusted root accounts for the Enrollment Tool."
-    mississippi_sis_csv_parameters: 
-      account_reports: 
-        default: 
-          enrollments: 
-            check_box: "Enrollments CSV"
-          sections: 
-            check_box: "Sections CSV"
-          users: 
-            check_box: "Users CSV"
     no_user_message: "No user found with that id"
     outcome_results_csv_description: 
       account_reports: 
@@ -659,18 +504,6 @@ en:
         sis_export: 
           description: 
             text: "This report will export all the needed information that relates to provisioning Canvas in its respective categories."
-    quiz_data_csv_description: 
-      account_reports: 
-        ace: 
-          quiz_data_description: 
-            header: Example
-            text: "This report shows quiz questions and answers for all quizzes in a given term. The resulting csv file will have one row per quiz question and answer."
-    quiz_statistics_csv_description: 
-      account_reports: 
-        ace: 
-          quiz_statistics_description: 
-            header: Example
-            text: "This report shows quiz questions, how many users answered the questions, and how many users answered them correctly for all quizzes in a given term. The resulting csv file will have one row per quiz question."
     quota_integer_required: "An integer value is required"
     quota_must_be_positive: "Value must be positive"
     quota_not_updated: "Quota was not updated"
@@ -683,40 +516,6 @@ en:
             header: Example
             text: "This report shows all the courses for a given term that have been deleted in the last 30 days. The resulting csv file will have one row per course and will show the course id, course sis id, course short name, course name, course start and end dates."
     retry_login: "Retry Login"
-    root_accounts: 
-      labels: 
-        name: "Account Name"
-    safety_drill_csv_description: 
-      account_reports: 
-        newark: 
-          description: 
-            header: Example
-          student_activity: 
-            text: "This report shows shows all of the assignments and info pertaining to those assignments that are in the specified assignment group or groups and in the specified date range. This report provides data for scheduling safety drills with a minimum of disruption to major in-class assessments."
-    safety_drill_csv_parameters: 
-      account_reports: 
-        newark: 
-          assignment_groups: 
-            label: "Assignment Groups To Include:"
-          assignments: 
-            check_box: Assignments
-          major: 
-            check_box: Major
-          papers: 
-            check_box: Papers
-          projects: 
-            check_box: Projects
-          reports: 
-            check_box: Reports
-          tests: 
-            check_box: Tests
-    scantron_quiz_csv_parameters: 
-      account_reports: 
-        edison: 
-          quiz_id: 
-            field: "Quiz id"
-          section_id: 
-            field: "Section ID"
     settings: 
       about_google_docs: |-
           In order to make it easier for users, rather than forcing them to download things like Word docs, PDFs, Excel spreadsheets, and open office documents (In addition to requiring that those programs be installed on their on their computer), in many areas throughout Canvas, it will allow you an inline preview of the document.
@@ -724,13 +523,6 @@ en:
           If Scribd has been enabled for this account, it will try to use it to show the preview. But because Scribd uses flash paper to display the documents, and many users (namely those using an iPad/iPhone) do not have Flash Player installed, that preview will not work.  By leaving Google Docs Previews enabled, when a browser does not have Flash enabled, or if Scribd is not enabled, it will use preview powered by Google Docs. Using this service is subject to Google's viewer [terms of service](%{terms_url})
       about_google_docs_tooltip: "About Google Docs Previews"
       account_admins_title: "Account Admins"
-      account_quotas: 
-        file_quota: "File Quota"
-        gigabytes: gigabytes
-        media_quota: "Media Quota"
-        site_admin_quotas: "Site Admin Quotas"
-        student_quota: "Student Quota"
-        update: Update
       account_settings_title: "Account Settings"
       add_a_custom_help_link: "Add a custom help link"
       add_admin_title: "Add Account Admins"
@@ -991,8 +783,6 @@ en:
       started_at_message: "Started: %{started_at}"
       title: "SIS Import"
       try_import_again_link: "Try import again"
-    site_admin_statistics: 
-      page_title: "Statistics for %{account}"
     statistics: 
       concluded_at: "concluded %{at}"
       created_at: "created %{at}"
@@ -1030,47 +820,12 @@ en:
         one: "%{file_size} *from one file*"
         other: "%{file_size} *from %{count} files*"
       uploaded_file_storage_header: "Uploaded File Storage"
-    student_access_csv_description: 
-      account_reports: 
-        tmcc: 
-          description: 
-            header: Example
-          student_activity: 
-            text: "This report shows all the activity from students enrolled in a given course or all courses in a given term. Resulting csv file will have one row per student activity and will have the following headers; section id, section sis id, section name, course id, course sis id, course name, user id, user sis id, content type, content, times viewed, times participated, last viewed. The times viewed and times participated are counters from the beginning of time until the time the report was generated."
     student_assignment_outcome_map_csv_description: 
       account_reports: 
         student_assignment_map: 
           description: 
             header: Example
             text: "This report shows the learning outcome results for all students. The resulting csv file will have one row per user-outcome-result pair, and will show the details of the result including the associated assignment. This report only shows outcome results for assignments and does not include outcomes tied to question banks."
-    student_ip_csv_description: 
-      account_reports: 
-        dubspot: 
-          description: 
-            header: Example
-          student_login: 
-            text: "This report shows all the students enrolled in a given course or all courses in a given term. Resulting csv file will have one row per student enrollment."
-    student_login_csv_description: 
-      account_reports: 
-        bucks: 
-          description: 
-            header: Example
-          student_login: 
-            text: "This report shows the students that have not logged in since a given date."
-    student_login_csv_parameters: 
-      account_reports: 
-        bucks: 
-          login: 
-            check_box: "Include users that have never logged in?"
-          parameters: 
-            note: "This report does not reflect the last activity in canvas rather the last time that the user logged in."
-    student_submissions_csv_description: 
-      account_reports: 
-        vilas: 
-          description: 
-            header: Example
-          student_submissions: 
-            text: "This is a report of all students enrolled in a course in a given term that have submitted an assignment. This report contains one row per student submission."
     students_with_no_submissions_csv_description: 
       account_reports: 
         default: 
@@ -1078,26 +833,6 @@ en:
             description: 
               header: Example
             text: "This is a report of all students enrolled in a course in a given term that have not submitted an assignment between the given date range in a course. This report contains one row per student enrollment that meet the criteria. The date range can be no larger than two weeks."
-    submission_data_csv_description: 
-      account_reports: 
-        submission_data: 
-          description: 
-            text: "This report contains dates of submissions for the attendance tool."
-    tempe_grade_export_csv_description: 
-      account_reports: 
-        tempe: 
-          description: 
-            header: Example
-          grade_export: 
-            text: "This report shows the student final grade results for all students in a given term. The resulting tab delimited file will have one row per enrollment, and will show the final grade and multiple course information fields that will be used for uploading grade data into Synergy SIS."
-    tempe_grade_export_csv_parameters: 
-      account_reports: 
-        tempe: 
-          course: 
-            text: "Course ID"
-          parameters: 
-            note1: "Course ID can be left blank to run the report for all courses in the term."
-            note2: "Courses with muted assignments may not accurately reflect scores in this report."
     terms_parameters: 
       account_reports: 
         default: 
@@ -1129,18 +864,6 @@ en:
     user_added_message: "*%{user}* successfully added!"
     user_added_message_sent_message: "*%{user}* successfully added! They should receive an email confirmation shortly."
     user_deleted_message: "%{username} successfully deleted"
-    user_inactivity_csv_description: 
-      account_reports: 
-        webster: 
-          description: 
-            header: Example
-          low_activity: 
-            text: "This report shows all the users enrolled in a given course or all courses in a given term. Resulting csv file will have one row per user enrollment that have not visited the minimum number of course items."
-    user_inactivity_csv_parameters: 
-      account_reports: 
-        webster: 
-          login: 
-            day_drop: "Minimum course items visited:"
     users_list: 
       login_name_or_sis_id: "Login / SIS ID"
       name: Name
@@ -1233,32 +956,6 @@ en:
       criteria_required: "At least one trigger is required"
       recipients_required: "At least one recipient is required"
       threshold_should_be_numeric: "This should be a positive number"
-  analytics: 
-    course: 
-      analytics: Analytics
-      page_title: "Analytics: %{course}"
-    crumb: 
-      completed: "Completed Courses"
-      current: "Current Courses"
-    department: 
-      analytics: Analytics
-    filters: 
-      completed: "Completed Courses"
-      current: "Current Courses"
-    page_title: 
-      completed: "Analytics: %{account} -- Completed Courses"
-      current: "Analytics: %{account} -- Current Courses"
-      term: "Analytics: %{account} -- %{term}"
-    student_in_course: 
-      analytics: Analytics
-      page_title: "Analytics: %{course} -- %{student}"
-  ange_name: "Angel Converter"
-  angel: 
-    file_copy_fail: "Could not copy folder \"%{base_path}\""
-    file_copy_fail_message: "Could not rename directory to path \"%{path}\""
-    file_import_fail: "Could not import file \"%{file_path}\""
-  angel_display: "ANGEL Learning"
-  angel_file_description: "Angel export .zip format"
   announcement: 
     no_title: "No Title"
   announcements: 
@@ -1331,11 +1028,7 @@ en:
       page_disabled_for_course: "That page has been disabled for this course"
       page_disabled_for_group: "That page has been disabled for this group"
     warnings: 
-      details: 
-        suspended: "This institution's Canvas account has been suspended. Only Account Administrators may log in to correct any problems."
       please_log_in: "For security purposes, please enter your password to continue"
-      titles: 
-        suspended: "Institution Suspended"
       unsupported_browser: "Your browser does not meet the minimum requirements for Canvas. Please visit the *Canvas Guides* for a complete list of supported browsers."
     wiki_front_page_default_content_course: "Welcome to your new course wiki!"
     wiki_front_page_default_content_group: "Welcome to your new group wiki!"
@@ -2132,75 +1825,12 @@ en:
   auth_logging: 
     login: LOGIN
     logout: LOGOUT
-  bb_display: "Blackboard Learn"
-  bb_file_description: "Blackboard 6/7/8/9 export .zip file"
-  bb_name: "Blackboard Converter"
   big_blue_button_conference: 
     conference_is_recorded: "This conference is being recorded."
     recording_setting: Recording
-    recording_setting_description: "Record this conference"
-  blackboard: 
-    no_manifest: "This Blackboard .zip has no imsmanifest.xml file in the root directory."
+    recording_setting_description: "Record this live session"
   bookmark_service: 
     default_title: "No Title"
-  bulk_course_migration: 
-    export_failed: "There was an error exporting the course with bb_lcid %{id} from Blackboard"
-    export_failed_no_id: "There was an error importing a course"
-    export_failed_not_found: "The course with bb_lcid %{id} could not be found in Blackboard with user %{user_name}"
-    export_failed_with_id: "There was an error importing the course with bb_lcid %{id} into Canvas"
-    no_course_found: "No course was found with %{id_type} of %{id}"
-    no_course_id_given: "No Canvas course was identified for bb_lcid %{id}"
-    no_credentials_found: "No credentials were found for the user name %{user_name}"
-    no_credentials_given: "No user name was given for the course %{course_identifier}"
-    no_lcid_found: "No bb_lcid was specified for a row"
-    queue_error: "There was an error while queueing the migrations."
-  bulk_course_migrations: 
-    bulk_course_migration: 
-      exporting: "Exporting from Blackboard"
-      failed: Failed
-      finished: Finished
-      importing: "Importing into Canvas"
-      migration_cancelled_on: "Cancelled on %{date}"
-      migration_failed_on: "Failed on %{date}"
-      migration_finished_on: "Finished on %{date}"
-      migration_queueing: "The individual course migrations are being queued to run."
-      migration_started_at: "Bulk migration started at %{time}"
-      migration_waiting: "The bulk migration is waiting to run."
-      see_results: "See results"
-      show_warnings: "Show warnings"
-      waiting_to_export: "Waiting to export from Blackboard"
-      waiting_to_import: "Waiting to import into Canvas"
-    index: 
-      available_courses: "Available Courses"
-      bulk_description: "These are the headers expected in the CSV:"
-      buttons: 
-        add_credentials: "Add Credentials"
-        migrate_courses: "Migrate Courses"
-      column_name: "Column Name"
-      course_id_description: "The canvas id of the course to import into."
-      credential_description: "This tool will help you migrate multiple courses at the same time from a Blackboard Vista/CE system. Add a set of credentials for your Blackboard system then add Canvas course identifiers to the provided CSV template to migrate your courses."
-      csv_description: "Any other columns can be added but they will be ignored. Here is an example of a simple CSV for 3 courses in the account for a user name of \"greg\":"
-      csv_template: "CSV Template"
-      current_migration_batch: "Current Migration Batch"
-      description: Description
-      errors: 
-        choose_file: "You must choose a .csv file to upload"
-      labels: 
-        only_use_one: "Only use one of these two columns"
-        password: Password
-        school: School
-        user_name: "User Name"
-      lcid_description: "The lcid of the course in the Blackboard system."
-      login_credentials: "Blackboard login credentials"
-      page_title: "Bulk Course Migration"
-      previous_migration_batches: "Previous Migration Batches"
-      school: School
-      school_not_supported: "Please have your administrator contact Instructure to help get your school supported."
-      sis_id_description: "The SIS ID of the canvas course to import into."
-      upload_migration_csv: "Upload a Migration CSV"
-      user_name: "User Name"
-      user_name_description: "The user name of the user that has teacher/designer access to the course for the row. This must match one of the user name's listed in the Blackboard login credentials above."
-    only_one_bulk_migration: "Only one bulk course migration can be run at a time."
   button: 
     submit_assignment: "Submit Assignment"
   buttons: 
@@ -2213,7 +1843,6 @@ en:
     delete: Delete
     done: Done
     filter: Filter
-    find_user: "Find User"
     hide_all_artifacts: "Hide All Artifacts"
     import: Import
     login: Login
@@ -2914,26 +2543,33 @@ en:
       advanced_settings: "Manage Advanced Settings..."
       buttons: 
         cancel: Cancel
-        create_conference: "Create Conference"
-        update_condference: "Update Conference"
+        create_live_session: "Create Live Session"
+        update_live_session: "Update Live Session"
       conference_type: Type
       description: Description
       duration: Duration
       duration_in_minutes: minutes
       invite_all: "Invite All Course Members"
-      long_running: "No time limit (for long-running conferences)"
+      long_running_live_session: "No time limit (for long-running live session)"
       members: Members
       name: Name
       options: Options
+      section: Section
+      start_date: "Start Date"
     general_error: "There was an error joining the conference"
     general_error_with_message: "There was an error joining the conference. Message: '%{message}'"
+    get_conferences_for_user: 
+      concluded_live_sessions: "Concluded Live Sessions"
+      new_live_sessions: "New Live Sessions"
+      no_concluded_live_sessions: "There are no concluded live sessions"
+      no_new_live_sessions: "There are no new live sessions"
     inactive_error: "That conference is not currently active"
     index: 
-      concluded_conferences: "Concluded Conferences"
-      new_conference: "New Conference"
-      new_conferences: "New Conferences"
-      no_concluded_conferences: "There are no concluded conferences"
-      no_new_conferences: "There are no new conferences"
+      concluded_live_sessions: "Concluded Live Sessions"
+      new_live_session: "New Live Session"
+      new_live_sessions: "New Live Sessions"
+      no_concluded_live_sessions: "There are no concluded live sessions"
+      no_new_live_sessions: "There are no new live sessions"
       page_title: "Web Conferences"
     loading_urls_message: "Loading, please wait..."
     multiple_urls_message: "There are multiple %{type} pages available for this conference. Please select one:"
@@ -2948,7 +2584,7 @@ en:
       setings: settings
       start: Start
       view: View
-    new_conference_title: "New Conference"
+    new_live_session_title: "New Live Session"
     no_settings_error: "The conference does not have an advanced settings page"
     no_urls_error: "Sorry, it looks like there aren't any %{type} pages for this conference yet."
     notifications: 
@@ -2967,7 +2603,7 @@ en:
         new: "Hasn't started yet"
         started: "Started %{time}"
     type_disabled_error: "This type of conference is no longer enabled for this Canvas site"
-    update_conference_title: "Update Conference"
+    update_live_session_title: "Update Live Session"
   content_exports: 
     buttons: 
       process: "Process Data"
@@ -3055,11 +2691,7 @@ en:
     unknown: Unknown
     upload_timeout_error: "The file upload process timed out."
   content_migrations: 
-    angel_exporter: 
-      options: Options
     bad_migration_type: "Invalid migration_type"
-    blackboard_export: 
-      options: Options
     canvas_export: 
       options: Options
     common_cartridge: 
@@ -3071,9 +2703,6 @@ en:
     content_migration_issue: 
       error_report: "Error Report"
     copy_course: 
-      options: Options
-    course_list_error: "Could not retrieve courses. Are you connected to the internet?"
-    d2_l_export: 
       options: Options
     file_required: "You must select a file to import content from"
     file_too_large: "Your migration cannot exceed %{file_size}"
@@ -3103,10 +2732,8 @@ en:
       loading: Loading
     qti_zip: 
       options: Options
-    school_required: "You must select a school."
     select_content: 
       select_content_btn: "Select Content"
-    select_course: "Select Course"
     show_issues: "Show Issues"
     subviews: 
       choose_migration_file: 
@@ -3163,20 +2790,6 @@ en:
         select_migration_label: "Select migration content"
     upload_warning: "Navigating away from this page will cancel the upload process."
     uploading: Uploading...
-    web_ct: 
-      cancel: Cancel
-      get_courses: "Get Courses"
-      password: Password
-      select_school: "Select School"
-      username: Username
-    web_ct_course_list: 
-      course_list: Course(s)
-      no_files_help_label: "More Information for 'Do not download files' option"
-      no_files_help_text: "Downloading files from WebCT courses can take a long time, and may cause the migration process to fail. Instead, you can manually copy the files and then choose this option to migrate the rest of the content."
-      no_files_help_title: "\"More Information for not 'Do not download files' option\""
-      no_files_help_title_icon: "More Information for 'Do not download files' option"
-      options: Options
-      skip_all_files: "Do not download files from course"
   content_tag: 
     no_title: "No title"
   content_tags: 
@@ -4308,12 +3921,6 @@ en:
         one: "1 needs grading"
         other: "%{count} need grading"
       points_possible: "out of %{points_possible}"
-    canvasnet_instructor: 
-      avatar_url: Avatar
-      biography: Bio
-      instructor_name: Name
-      job_title: Title
-      remove_instructor: "Remove Instructor"
     confirm_action: 
       buttons: 
         conclude_course: "Conclude Course"
@@ -4397,43 +4004,6 @@ en:
         tas: "Add TAs to the Course"
         title: 
           bookmark: "Copy or bookmark this link"
-    edit_profile: 
-      about: About
-      about_related_id: "shared identifier used to link related courses/sections together"
-      add_instructor: "Add Instructor"
-      basic_info: "Basic Information"
-      disabled: Closed
-      enabled: Open
-      institution: Institution
-      institution_name: Name
-      instructor_led: Instructor-led
-      instructors: Instructors
-      labels: 
-        description: Description
-        enrollment_fee: "Enrollment Fee"
-        format: Format
-        image: Image
-        path: "Course Path"
-        portal_path: "Portal Path"
-        position: Position
-        related_id: "Link ID"
-        self_enrollment: Enrollment
-        self_enrollment_limit: "Enrollment Cap"
-        tags: Tags
-        tentative_start: "Tentative Start"
-        title: Title
-        visibility: Visibility
-      leave_blank_if_free: "leave blank if this is a free course"
-      logo: Logo
-      page_title: "Course Profile"
-      path_syntax: "lower-case letters, numbers and dashes"
-      portal_path_syntax: "lower-case letters, numbers, dashes and slashes (e.g. harvard/chemistry)"
-      private: Hidden
-      public: "Listed on canvas.net"
-      save_changes: "Save changes"
-      self_paced: Self-paced
-      unlisted: "Unlisted on canvas.net (accessible via url)"
-      when_to_set_tentative_start: "e.g. \"Fall 2013\", if the course doesn't have a definitive start date"
     enrollment_reminders: 
       buttons: 
         accept: "Accept Invitation"
@@ -4850,7 +4420,6 @@ en:
     announcements: Announcements
     assignments: Assignments
     calendar_events: "Calendar Events"
-    conferences: Conferences
     confirmation: Confirmation
     copy_course: "Copy Course"
     developer_keys: "Developer Keys"
@@ -4863,6 +4432,7 @@ en:
     grading_schemes: "Grading Schemes"
     groups: Groups
     jobs: Jobs
+    live_sessions: "Live Sessions"
     media: Media
     messages: Messages
     modules: Modules
@@ -4938,9 +4508,6 @@ en:
       assign_blanks: "Assign zeroes to unsubmitted students"
     out_of_points_possible: "out of %{assignment.points_possible}"
     this_is_permanent: "Grade curving cannot be undone. Pre-curved grade histories will be available, but the curving action is irreversible."
-  d2l_display: Desire2Learn
-  d2l_file_description: "D2L export .zip format"
-  d2l_name: "D2L Converter"
   dashboard: 
     announcements_collapse: 
       one: "Collapse %{count} announcement"
@@ -5088,58 +4655,6 @@ en:
   default_conference_title: "%{course_name} Conference"
   default_question_name: Question
   default_question_text: "Question text"
-  demos: 
-    demos_add: 
-      labels: 
-        school_name: "School Name"
-        username: "Email Address"
-    register: 
-      add_site: "Add Site"
-      agree_to_terms: "I agree to the *terms of use* and acknowledge the **privacy policy**."
-      begin_trial: "Begin Trial"
-      choose: Choose
-      cio: CIO
-      corporate: Corporate
-      dean: Dean
-      director: Director
-      higher_education: "Higher Ed"
-      incorrect: "Incorrect. Try again."
-      instructional_designer: "Instructional Designer"
-      invalid_email: "Invalid email address"
-      k12: K12
-      labels: 
-        current_lms: "Current LMS"
-        name: Name
-        organization_size: "Organization Size"
-        organization_type: "Organization type"
-        phone: "Phone number"
-        school_name: "School / organization"
-        school_position: Title
-        type_what_you_hear: "Type what you hear"
-        type_what_you_see: "Type what you see"
-        username: Email
-      lms_admin: "LMS Administrator"
-      no_lms: None
-      other: Other
-      other_lms: Other
-      other_title: Other
-      personalize_demo: "Personalize Your Demo"
-      personalizing: Personalizing...
-      proprietary_lms: "Homegrown / Proprietary"
-      provost: Provost
-      ready: Ready!
-      school_admin: "School Administrator"
-      sign_up_to_canvas: "Sign up to try Canvas"
-      specify_lms: "Please specify your current LMS or choose 'none'"
-      specify_size: "Please specify your organization's size"
-      student: Student
-      subscribe: "I want to receive news, tips and info from Instructure"
-      support: Support
-      teacher: Teacher/Instructor
-      technologist: Technologist
-      try_again: "Try Again"
-      vice_president: VP
-      you_must_agree_to_terms: "You must agree to the terms of use"
   developer_key: 
     api_key: "Key: *%{api_key}*"
     created: "Created:"
@@ -5243,6 +4758,9 @@ en:
       allow_threaded_replies: "Allow threaded replies"
       attachment: Attachment
       available_from: "Available From"
+      buttons: 
+        not_published: "Not Published"
+        published: Published
       delay_posting: "Delay posting"
       enable_podcast_feed: "Enable podcast feed"
       include_replies_in_podcast_feed: "Include Replies in podcast feed"
@@ -5461,8 +4979,6 @@ en:
     due_at: "due: %{assignment_due_date_time}"
     multiple_due_dates: "due: Multiple Due Dates"
     no_due_date: "due: No Due Date"
-  ecollege_file_description: Ecollege
-  ecollege_name: "Ecollege Converter"
   edit_rubric: 
     buttons: 
       create_rubric: "Create Rubric"
@@ -6036,6 +5552,7 @@ en:
   features: 
     draft_state: "Draft State"
     google_docs_domain_restriction: "Google Docs Domain Restriction"
+    screenreader_gradebook: "Screenreader Gradebook"
   filebrowserview: 
     course_files: "Course files"
     group_files: "Group files"
@@ -6289,6 +5806,7 @@ en:
     graded_then_resubmitted: "graded, then resubmitted (%{when})"
     gradee_index_of_total: "%{gradee} %{x} of %{y}"
     group: Group
+    hide_all_details_button: "Hide All Details"
     hide_all_things: "Hide All %{things}"
     hide_column: "Hide Column"
     hide_student_name: "Hide Student Names"
@@ -6315,6 +5833,7 @@ en:
     reupload_submissions: "Re-Upload Submissions"
     set_default_grade: "Set Default Grade"
     set_group_weights: "Set Group Weights"
+    show_all_details_button: "Show All Details"
     show_student_name: "Show Student Names"
     showing_all_sections: "Showing All Sections"
     showing_section: "Showing Section: %{section}"
@@ -6930,6 +6449,7 @@ en:
       communities: Communities
       imported: "Imported Groups"
       student_organized: "Student Groups"
+      uncategorized: Uncategorized
     invalid_self_signup: "Self-signup needs to be one of the following values: %{values}"
     name_required: "Name is required"
     name_reserved: "%{name} is a reserved name."
@@ -7152,7 +6672,7 @@ en:
         save: Save
         saving: Saving...
         self_signup: "Self Sign-Up"
-        split_into_groups: "Split students into %h{split_num} equal groups"
+        split_into_groups: "Split students into %h{num_groups} equal groups"
       group_category_detail: 
         add_group: "Add Group"
         category_settings: Settings
@@ -7166,6 +6686,7 @@ en:
         self_organized_warning: "These groups are self-organized by students. Unlike other types of groups, students can belong to more than one of these groups at a time, so these groups cannot be used for graded assignments."
         self_signup_blurb: "Self sign-up is enabled for these groups."
         settings: Settings
+        uncategorized_groups: "These groups are not associated to any particular group set. Because they were imported via SIS, they can only be updated or deleted via SIS."
       group_category_edit: 
         allow_self_signup: "Allow self sign-up"
         cancel: Cancel
@@ -7200,10 +6721,12 @@ en:
         remove: Remove
         remove_from_group: "Remove %{name} from group"
       group_users: 
+        add_student: "Add a student to get started."
+        add_user: "Add a user to get started."
         no_matching_students: "No matching students."
         no_matching_users: "No matching users."
-        no_students: "There are currently no students in this group. Add a student to get started."
-        no_users: "There are currently no users in this group. Add a user to get started."
+        no_students: "There are currently no students in this group."
+        no_users: "There are currently no users in this group."
       groups: 
         no_groups: "There are currently no groups in this group set. Add a group to get started."
         no_matching_groups: "There are no groups that match your current search term."
@@ -7236,6 +6759,7 @@ en:
       students_assigned: "Students assigned to groups."
       update_success: "Group was successfully updated."
       welcome: "Welcome to the group %{group_name}!"
+    positive_group_count: "Must enter a positive group count"
     randomly_assigning_members: "Randomly Assigning Students"
     show: 
       coming_up: "Coming Up"
@@ -7494,9 +7018,6 @@ en:
   learning_outcome_group: 
     no_global_permission: "You're not allowed to manage global outcomes, can't add \"%{title}\""
   lib: 
-    angel: 
-      failed_import_link: "Failed import link"
-      failed_import_link_body: "This link referenced an Angel feature that couldn't be linked to by Canvas or that was left out of the export."
     api: 
       attachments: 
         only_one_folder: "Can't set folder path and folder id"
@@ -7666,10 +7187,6 @@ en:
   message_students_dialog: 
     recipients: "Recipients:"
   messages: 
-    account_suspended: 
-      email: 
-        body: "%{institution} has been suspended.  Please contact your Site Admin to find out why."
-        subject: "Institution Suspended"
     account_user_notification: 
       email: 
         html: 
@@ -8432,66 +7949,6 @@ en:
         unknown_user: "Unknown User"
       twitter: 
         tweet: "Canvas Alert - Message from %{user_name}."
-    course_already_started: 
-      email: 
-        body: |-
-            Hi %{user},
-            
-            %{course}, your course on Canvas Network, started a couple days ago, and we noticed you haven't logged in yet. We just wanted to send you one last reminder in case you forgot.
-            
-            To log in, go to %{site} and enter your username and password. If you haven't set a password yet, you can set one here: %{password_url}
-            
-            If you simply can't make this particular course, feel free to browse our course catalog at %{site} to find something else that inspires you. New courses are being added all the time!
-            
-            We hope to see you soon,
-            
-            Canvas Network
-        course_already_started: "Your course has already started"
-    course_required_materials: 
-      email: 
-        body: |-
-            Hi %{user},
-            
-            Good news! %{course}, the course you enrolled in on Canvas Network, will be starting soon.
-            
-            To help make sure you get the most from your course, you should check for any special instructions or course materials listed by the instructor.  You can look for this on the course details page on Canvas Network, or just click the link below.
-            
-            %{url}
-            
-            Keep learning,
-            
-            Canvas Network
-        course_required_materials: "Materials and instructions for %{course}"
-    course_started: 
-      email: 
-        body: |-
-            Hello %{user},
-            
-            This is a friendly reminder that %{course}, your course on Canvas Network, begins today. You can now log in to %{site} and get started!
-            
-            Don't forget to set up your Canvas Network profile, so others in the course know who you are. You can update your profile at %{profile_url}
-            
-            Keep learning,
-            
-            Canvas Network
-        course_starts_today: "Your course begins today"
-    course_starts_in_week: 
-      email: 
-        body: |-
-            %{user},
-            
-            It's almost time! %{course}, a course you enrolled in on Canvas Network, begins next week. We know how excited you must be, and we're excited too.
-            
-            What can you do to get ready?
-            
-            If you haven't already created your Canvas Network profile, you can log in and set it up at Canvas.net. Your profile will help other people in the course know who you are. There, you can also set up your notification preferences.
-            
-            Finally, you can review the required materials and any instructions for your course here: %{url}
-            
-            Keep learning,
-            
-            Canvas Network
-        course_starts_next_week: "Your course starts next week"
     dialog: 
       title: "Send a reply message"
     email: 
@@ -9312,26 +8769,6 @@ en:
         subject: "New Assessment: %{title}, %{context}"
       twitter: 
         tweet: "Canvas Alert - New Assessment: %{title}, %{context}."
-    self_enrollment_registration: 
-      email: 
-        body: |-
-            Hello %{user},
-            
-            You have successfully self enrolled in %{course}, a course on Canvas Network!
-            
-            Don't forget to set up your Canvas Network profile, so others in the course know who you are. You can update your profile at %{profile_url}
-            
-            Keep learning,
-            
-            Canvas Network
-        html: 
-          farewell: "Keep learning,"
-          greetings: "Hello %{user},"
-          profile_reminder: "Don't forget to set up your *Canvas Network profile*, so others in the course know who you are."
-          self_enrollment_confirmation: "You have successfully self enrolled in %{course}, a course on Canvas Network!"
-          self_enrollment_registration: "Your enrollment in %{course}"
-          signature: "Canvas Network"
-        self_enrollment_registration: "Your enrollment in %{course}"
     send_form: 
       labels: 
         message_body: Message
@@ -9571,8 +9008,6 @@ en:
     assignment_type: Assignment
     calendar_event_type: "Calendar Event"
     discussion_topic_type: "Discussion Topic"
-    ecollege: 
-      course_not_found: "The ECollege course wasn't found."
     external_feed_type: "External Feed"
     file_type: File
     grading_standard_type: "Grading Standard"
@@ -9582,8 +9017,6 @@ en:
     quiz_question_type: "Quiz Question"
     quiz_type: Quiz
     rubric_type: Rubric
-    webct: 
-      course_not_found: "The Blackboard course wasn't found."
     wiki_page_type: "Wiki Page"
   migration_issues: 
     errors: 
@@ -10104,8 +9537,6 @@ en:
     view_more_link: "View More"
   paginated_view: 
     loading_more_results: "Loading more results"
-  paypal: 
-    exception: "We're sorry, an error has occurred, please try again later."
   plugins: 
     academic_benchmark_importer: 
       description: "This enables importing Academic Benchmark standards into Canvas."
@@ -10138,10 +9569,6 @@ en:
           This plugin allows admins to check a property on assignments that makes the configured
           properties un-editable once the assignment is copied into another course.
       no_copying_frozen: "Don't allow frozen assignments to be copied."
-    banner_grade_exchange_settings: 
-      labels: 
-        canvas_source_identifier: "Name of your Canvas instance"
-        sis_source_identifier: "Name of your Banner instance"
     big_blue_button: 
       description: "BigBlueButton web conferencing support"
       name: BigBlueButton
@@ -10259,20 +9686,6 @@ en:
         publish_endpoint: "Endpoint to publish to"
         success_timeout: "Success notification timeout (in seconds)"
         wait_for_success: "Wait for success notifications"
-    ims_es_importer_settings: 
-      labels: 
-        course_long_name_selection: "Course long name selection"
-        course_short_name_selection: "Course short name selection"
-        course_sourcedid_name_prefix: "Course \"sourcedid\" ignored prefix"
-        default_email_domain: "Default email domain"
-        email_preference: "Email preference"
-        lms_delivery_name: "LMS Delivery Name"
-        map_sections_to_courses: "Map IMS sections to Canvas Courses"
-        section_end_days_adjustment: "Section end days adjustment"
-        section_name_selection: "Section name selection"
-        section_start_days_adjustment: "Section start days adjustment"
-        term_end_days_adjustment: "Term end days adjustment"
-        term_start_days_adjustment: "Term start days adjustment"
     index: 
       author: Author
       description: Description
@@ -10343,14 +9756,6 @@ en:
       labels: 
         api_key: "API Key"
         secret_key: "Secret Key"
-    lockdown_browser: 
-      labels: 
-        download_url: "LockDown Browser Download URL"
-        plugin_enabled: Enabled
-    med_cornell_export: 
-      labels: 
-        password: "Password for authentication"
-        username: "Username for authentication"
     notices: 
       settings_updated: "Plugin settings successfully updated."
     qti_converter_settings: 
@@ -10383,11 +9788,6 @@ en:
     sessions_timeout: 
       labels: 
         session_timeout: "Time before session expires in minutes (20 minimum)"
-    settings_header: 
-      prompt_change_for_all_line1: "This changes the settings for ALL ACCOUNTS!"
-      prompt_change_for_all_line2: "Are you absolutely certain you want to do this?"
-      prompt_delete_account_setting: "Are you sure you want to delete the Account Config?"
-      select_account_prompt: "(Select Account)"
     show: 
       back_to_list: "Return to plugins list"
       labels: 
@@ -10418,16 +9818,6 @@ en:
       labels: 
         api_key: "Consumer Key"
         secret_key: "Consumer Secret"
-    webct_scraper_settings: 
-      description: |-
-          If the institution does not use WebCT's "Learning Modules" (including schools who adopted WebCT
-            prior to version 4.0, when modules were made available), course migrations can be improved by importing the "Course Content"
-            as Canvas Modules instead of the "Learning Modules". This page allows one to set the default behavior of the WebCT migrator
-            with respect to content modules. It is important to remember that, while individual course migrations retain the ability
-            to choose, the bulk migrator always utilizes the value configured here and cannot be changed per migration.
-      labels: 
-        allow_outline_selection: "Display option to use Course Content as Modules in the migration wizard"
-        folders_as_outline: "Use WebCT \"Course Content\" for modules as the default"
     wimba: 
       description: "Wimba web conferencing support"
       name: Wimba
@@ -10896,9 +10286,6 @@ en:
     disabled_assignment: "Can't unpublish if there are student submissions"
     disabled_discussion_topic: "Can't unpublish if there are student submissions"
     disabled_quiz: "Can't unpublish if there are student submissions"
-  purchases: 
-    new: 
-      payment_info: "Payment Information"
   qti_display: QTI
   qti_file_description: "QTI .zip file"
   qti_name: "QTI Converter"
@@ -12114,7 +11501,6 @@ en:
       become_user: "Become other users"
       change_course_state: "Change course state"
       comment_on_others_submissions: "View all students' submissions and make comments on them"
-      create_accounts: "Create new root accounts"
       create_collaborations: "Create student collaborations"
       create_conferences: "Create web conferences"
       manage_account_memberships: "Add/remove other admins for the account"
@@ -12123,10 +11509,8 @@ en:
       manage_announcements: "Manage global announcements"
       manage_assignments: "Manage (add / edit / delete) assignments and quizzes"
       manage_calendar: "Add, edit and delete events on the course calendar"
-      manage_canvasnet_courses: "Manage Canvas Network courses"
       manage_content: "Manage all other course content"
       manage_courses: "Manage ( add / edit / delete ) courses"
-      manage_demos: "Manage demos"
       manage_developer_keys: "Manage developer keys"
       manage_feature_flags: "Enable or disable features at an account level"
       manage_files: "Manage (add / edit / delete) course files"
@@ -12135,7 +11519,6 @@ en:
       manage_grades: "Edit grades"
       manage_groups: "Manage (create / edit / delete) groups"
       manage_interaction_alerts: "Manage alerts"
-      manage_links: "Manage role and trust links"
       manage_outcomes: "Manage learning outcomes"
       manage_role_overrides: "Manage permissions"
       manage_rubrics: "Create and edit assessing rubrics"
@@ -12159,10 +11542,8 @@ en:
       read_roster: "See the list of users"
       send_messages: "Send messages to individual course members"
       send_messages_all: "Send messages to the entire class"
-      suspend_accounts: "Suspend accounts"
       undelete_courses: "Undelete courses"
       view_all_grades: "View all grades"
-      view_analytics: "View analytics pages"
       view_error_reports: "View error reports"
       view_grade_changes: "View Grade Change Logs"
       view_group_pages: "View the group pages of all student groups"
@@ -12273,6 +11654,7 @@ en:
         are_you_sure_delete: "Are you sure you want to delete this rubric? Any course currently associated with this rubric will still have access to it, but, no new courses will be able to use it."
         are_you_sure_remove: "Are you sure you want to remove this rubric from your list?"
       remove_rubric: "Remove this Rubric from my list"
+  screenreader_gradebook_description: "Screenreader Gradebook provides an interface to gradebook that is designed for accessibility."
   scribd: 
     upgrade_flash: "Hello, you have an old version of Adobe Flash Player. To use iPaper (and lots of other stuff on the web) you need to %{link_tag}get the latest Flash player%{end_link}."
   search: 
@@ -12611,11 +11993,6 @@ en:
       close: Close
     flash_notices: 
       close: Close
-    footer_links: 
-      facebook: Facebook
-      privacy_policy: "Privacy policy"
-      terms_of_service: "Terms of service"
-      twitter: Twitter
     global_dialogs: 
       buttons: 
         install_video_plugin: "Install the Video Plugin"
@@ -12654,7 +12031,6 @@ en:
       links: 
         inbox: Inbox
         log_in: "Log In"
-        logout: Logout
         settings: Settings
         sign_up_as_teacher: "Sign Up as a Teacher"
       masquerading: 
@@ -13121,24 +12497,12 @@ en:
     columns: 
       date: Date
       value: Value
-    institution_suspended: 
-      body: "Your school's Canvas account is temporarily suspended. Please contact your Canvas administrator."
-      links: 
-        logout: Logout
-        stop_masquerading: "[Stop Masquerading]"
-      page_title: "Institution Suspended"
     links: 
       over_time: "over time"
     status: 
       loading: loading...
     titles: 
       value_over_time: "%{value} Over Time"
-    user_search: 
-      find_user_by: "Find a User by Login/Email"
-      find_user_by_label: Login/Email
-    users: 
-      user_search_label: "User Search"
-      users_matching_label: "Users Matching"
   slideshow: 
     titles: 
       back: Back
@@ -13328,12 +12692,12 @@ en:
     announcements: Announcements
     assignments: Assignments
     collaborations: Collaborations
-    conferences: Conferences
     discussions: Discussions
     eportfolios: ePortfolios
     files: Files
     grades: Grades
     home: Home
+    live_sessions: "Live Sessions"
     modules: Modules
     outcomes: Outcomes
     pages: Pages
@@ -13495,7 +12859,6 @@ en:
       too_long: "Can't exceed %{max} characters"
     registration: 
       agree_to_terms_and_privacy_policy: "You agree to the *terms of use* and acknowledge the **privacy policy**."
-      agree_to_terms_with_code_of_conduct: "You agree to the *terms of use* and the **code of conduct**."
   user_date_range_search: 
     cant_be_blank: "Canvas User ID can't be blank"
     cant_come_before_from: "'To Date' can't come before 'From Date'"
@@ -13894,13 +13257,6 @@ en:
       welcome_to_happiness: "Welcome to Canvas!"
   validate: 
     is_required: "This field is required"
-  warnings: 
-    test_install: 
-      periodic_message: "This Canvas installation is only for testing, and will reset periodically."
-      title: "Canvas Test Installation"
-      weekly_message: 
-        one: "This Canvas installation is only for testing, and will reset every week."
-        other: "This Canvas installation is only for testing, and will reset every %{count} weeks."
   web_conference: 
     default_name_for_courses: "Course Web Conference"
     default_name_for_groups: "Group Web Conference"
@@ -13910,11 +13266,6 @@ en:
         : "Off"
         ? "true"
         : "On"
-  webct_credentials: 
-    credential_not_found: "Credential not found."
-  webct_display: "Blackboard Vista/CE (WebCT)"
-  webct_file_description: "Blackboard Vista/CE, WebCT 6+ Course"
-  webct_name: "Blackboard Vista/CE (WebCT)"
   widget: 
     upload_media_track_form: 
       choose_a_language: "--Choose a Language--"
