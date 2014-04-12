@@ -35,14 +35,14 @@ define([
             conferenceData['scheduled_at'] = conferenceData.user_settings.scheduled_date;
             var current_date = new Date(ENV.current_date_time);
             var start_date = new Date(conferenceData['start_date']);
-            //15 minutes (900000 ) before enable the start button
+            //30 minutes (1800000 ) before enable the start button
             exact_time =  start_date - current_date
 
             conferenceData['highlight']=false;
             if((start_date.getFullYear() == current_date.getFullYear()) &&  (start_date.getMonth() == current_date.getMonth()) && (start_date.getDate() == current_date.getDate())) conferenceData['highlight']=true;
 //console.log(start_date);
 //console.log(current_date);
-            start_button_enable_time = exact_time - 900000
+            start_button_enable_time = exact_time - 1800000
 
             if(start_button_enable_time < 3600000 ){
             setTimeout(function() {
