@@ -115,9 +115,11 @@
           <li id="calendar_menu_item" class="menu-item">
             <a href="<%= calendar_path %>" class="menu-item-no-drop"><%= t('menu.calendar', 'Calendar') %></a>
           </li>
+          <% if WebConference.config  %>
           <li id="conferences_menu_item" class="menu-item">
             <a href="<%= conferences_path %>" class="menu-item-no-drop">Live Sessions</a>
           </li>
+          <% end  %>
         </ul>
     <% end %>
   </div>
@@ -140,7 +142,7 @@
               <% if @context.try(:short_name) %>
                   <div class='h1' id="section-tabs-header">
                     <%= @context.short_name %>
-                    <% if @context && @context.respond_to?(:context)  %>
+                    <% if @context && @context.respond_to?(:context)  %>conferences_menu_item
                         <a href="<%= url_for(@context.context) %>" id="section-tabs-header-subtitle" class="ellipsis"><%= @context.context.name %></a>
                     <% elsif @context && @context.respond_to?(:enrollment_term) && !@context.enrollment_term.default_term? %>
                         <span id="section-tabs-header-subtitle" class="ellipsis"><%= @context.enrollment_term.name %></span>
